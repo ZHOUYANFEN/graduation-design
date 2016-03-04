@@ -16,7 +16,3 @@ require(['mouse_draw', 'canvas_paint'], function(mouse_draw, canvas_paint){
 	canvas_paint.init();
 });
 
-// require(['canvas_paint'], function(canvas_paint){
-// 	canvas_paint();
-// });
-

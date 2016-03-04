@@ -22,47 +22,54 @@
   	</div>
   </div>
 
-  <div id="navigation-bar">
-  	<div class="place-holder">
-	  <a class="col" href="#all">
-	  	<div class="child">
-	  	  <div class="grand-child">全部</div>
-	  	</div>
-	  </a>	
-	  <a class="col" href="#senior">
-	  	<div class="child">
-	  	  <div class="grand-child">高中</div>
-	  	</div>
-	  </a>	
-	  <a class="col" href="#junior">
-	  	<div class="child">
-	  	  <div class="grand-child">初中</div>
-	  	</div>
-	  </a>	
-	  <a class="col" href="#primary">
-	  	<div class="child">
-	  	  <div class="grand-child">小学</div>
-	  	</div>
-	  </a>	
-	  <a class="col" href="#others">
-	  	<div class="child">
-	  	  <div class="grand-child last">其它</div>
-	  	</div>
-	  </a>	
-  	</div>
-  </div>
 
   <div id="main-content">
   	<div class="left">
+  	  <div class="description">
   	  	
+  	  </div>	
+  	  <div class="palette">
+  	  	<h3>调色板:</h3>
+  	  	<div class="all-colors">
+  	  	  <h4>颜色:</h4>
+  	  	  <table class="colors">
+  	  	  	<tr>
+  	  	  	  <td class="black"></td>
+  	  	  	  <td class="red"></td>
+  	  	  	  <td class="blue"></td>
+  	  	  	  <td class="green"></td>
+  	  	  	</tr>
+  	  	  	<tr>
+  	  	  	  <td class="yellow"></td>
+  	  	  	  <td class="purple"></td>
+  	  	  	  <td class="orange"></td>
+  	  	  	  <td class="white"></td>
+  	  	  	</tr>
+  	  	  </table>
+  	  	</div>
+  	  	<div class="current-color">
+  	  	  <h4>当前颜色:</h4>
+  	  	  <div class="black"></div>
+  	  	</div>
+  	  	<div class="line-weight">
+  	  	  <h4>线条粗细:</h4>	
+  	  	  <div class="options">
+  	  	  	<div class="light active">细</div>	
+  	  	  	<div class="medium">中</div>	
+  	  	  	<div class="bold">粗</div>	
+  	  	  </div>
+  	  	</div>
+  	  </div>
   	</div>	
   	<div class="right">
-  		
+  	  <!-- 核心画板区域 -->
+  	  <canvas id="main-canvas"></canvas>
   	</div>
   </div>
 
 
-  <!-- <script src="js/test.js"></script> -->
+  <!-- main javascript entrance -->
+  <script src="js/tools/require.js" data-main="js/room.js"></script>
 
 </body>
 </html>

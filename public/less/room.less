@@ -6,73 +6,111 @@ html,body{
 	background-color: #b8b8b0;
 }
 
-@navigation-bar-height: 60px;
-#navigation-bar{
-	width: 100%;
-	height: @navigation-bar-height;
-	.place-holder{
-		position: fixed;	
-		width: 100%;
-		min-width: @min-width;
-		height: @navigation-bar-height;
-
-		background-color: #787878;
-		opacity: 0.33;
-		transition: all .1s linear;
-		&:hover{
-			opacity: 0.92;
-		}
-		.col{
-			float: left;
-			display: block;
-			width: 20%;
-			height: 100%;
-			cursor: pointer;
-			.child{
+#main-content{
+	margin: 25px auto;
+	width: 94%;
+	height: 80%;
+	min-height: 480px;
+	min-width: 980px;
+	.left{
+		float: left;
+		width: 240px;
+		height: 100%;
+		background-color: #96999c;
+		margin-right: 20px;
+		.palette{
+			overflow: hidden;
+			padding-left: 5px;
+			h3{
+				margin: 10px 0 0 0;
+			}
+			h4{
 				float: left;
-				width: 100%;
-				height: 100%;
-				border-radius: 8px;		
-				.grand-child{
-					height: 43px;
-					margin-top: 9px;
-					border-right: 1.5px solid #aeaeae;
-
-					text-align: center;
-					color: #fff;
-					letter-spacing: 3px;
-					font: 23px/42px "黑体","宋体",sans-serif;
-
-					&.last{
-						border-right: 0px;
+				font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+				margin: 6px 0 5px 7px;
+			}
+			.all-colors{
+				h4{
+					margin-top: 14px;
+				}
+				.colors{
+					overflow: hidden;
+					border-spacing: 13px;
+					tr{
+						td{
+							width: 27px;
+							height: 27px;
+							cursor: pointer;
+						}
 					}
 				}
-				&:hover{
-					background-color: #585757;
+			}
+			.current-color{
+				overflow: hidden;
+				div{
+					float: left;
+					margin: 4px 0 0 15px;
+					width: 80px;
+					height: 28px;
+				}
+			}
+			.line-weight{
+				overflow: hidden;
+				.options{
+					float: left;
+					width: 130px;
+					margin: 4px 0 0 7px;
+					div{
+						display: inline-block;
+						text-align: center;
+						cursor: pointer;
+						width: 25px;
+						margin: 0 3px;
+						font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+						&.active{
+							border: 2px solid #000;
+						}
+					}
 				}
 			}
 		}
 	}
-}
-
-#main-content{
-	margin: 25px auto;
-	width: 94%;
-	height: 75%;
-	div{
-		height: 100%;
-	}
-	.left{
-		float: left;
-		width: 250px;
-		background-color: #96999c;
-	}
 	.right{
 		// width: 78%;
-		margin-left: 275px;
+		height: 100%;
 		background-color: #fff;
+		overflow: hidden;
+		cursor: crosshair;
 	}
 }
+
+
+//公共背景颜色
+.black{
+	background-color: #000000;
+}
+.red{
+	background-color: #ff0000;
+}
+.blue{
+	background-color: #0000ff;
+}
+.green{
+	background-color: #00ff00;
+}
+.yellow{
+	background-color: #ffff00;
+}
+.purple{
+	background-color: #ff00ff;
+}
+.orange{
+	background-color: #ff9900;
+}
+.white{
+	background-color: #ffffff;
+}
+
 
 /*
 	@media screen and (min-width: 1000px){}

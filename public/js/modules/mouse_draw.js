@@ -33,8 +33,8 @@ define(['jquery', 'canvas_paint'], function($, canvas_paint){
 				//出界，完成队列中剩下的坐标的路径绘制
 				if (coor_queue.length > 1){		
 					canvas_paint.draw_line(coor_queue);	
-					coor_queue = [];
 				}
+				coor_queue = [];
 				//重置最后坐标为空
 				canvas_paint.reset_last_coor();
 			})
@@ -43,8 +43,8 @@ define(['jquery', 'canvas_paint'], function($, canvas_paint){
 				//同上
 				if (coor_queue.length > 1){
 					canvas_paint.draw_line(coor_queue);	
-					coor_queue = [];
 				}
+				coor_queue = [];
 				canvas_paint.reset_last_coor();
 			});
 		},
