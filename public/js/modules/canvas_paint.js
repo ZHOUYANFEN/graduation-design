@@ -4,7 +4,7 @@ define(['jquery'], function($){
 		color_arr = {
 			black: '#000000',
 			red: '#ff0000',
-			bule: '#0000ff',
+			blue: '#0000ff',
 			green: '#00ff00',
 			yellow: '#ffff00',
 			purple: '#ff00ff',
