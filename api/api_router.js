@@ -2,11 +2,11 @@
 var express = require('express');
 var router = express.Router();
 
-var user_router = require('./user/user_router');
-var room_router = require('./room/room_router');
+var user = require('./user');
+var room = require('./room');
 
-router.use('/user', user_router);
-router.use('/room', room_router);
+router.use('/user', user);
+router.use('/room', room);
 
 /*
 router.get('/debug', function(req, res, next){
