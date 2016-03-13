@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+  </head>
+  <body>
+    <div id="regModal">
+      <div class="error"></div>
+      <div class="input-line">
+        <div class="labels">
+          <span>邮箱</span>
+        </div>
+        <input type="email" id="regEmail" placeholder="输入邮箱"/>
+      </div>
+      <div class="error"></div>
+      <div class="input-line">
+        <div class="labels">
+          <span>手机号</span>
+        </div>
+        <input type="text" id="regPhone" placeholder="输入手机号"/>
+      </div>
+      <div class="error_email error"></div>
+      <div class="input-line">
+        <div class="labels">
+          <span>密码</span>
+        </div>
+        <input type="password" id="regPassword" placeholder="输入密码"/>
+      </div>           
+      <div class="error_password error"></div>
+      <div class="input-line">
+        <div class="labels">
+          <span>密码</span>
+        </div>
+        <input type="password" id="regPassword2" placeholder="再次输入密码"/>
+      </div>           
+      <div class="error"></div>
+      <div class="submit-holder">
+        <img class="main-submit" src="image/registerBtn.png">
+      </div>
+    </div>
+
+    <script src="js/tools/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#regEmail').val('123@qq.com');
+        $('#regPhone').val('12345678');
+        $('#regPassword').val('123');
+        $('#regPassword2').val('123');
+
+      $('.main-submit').on('click', function(event){
+        var email = $('#regEmail').val();
+        var phone = $('#regPhone').val();
+        var password = $('#regPassword').val();
+        var password2 = $('#regPassword2').val();
+        console.log(email+', '+password+', '+password2);
+
+        $.ajax({
+          url: '/api/user/reg',
+          type: 'POST',
+          data: {
+            email: email,
+            phone: phone,
+            password: password
+          },
+          dataType: 'json',
+          timeout: 10000,
+          error: function(err){
+            console.log('ajax error!');
+            console.log(err);
+          },
+          success: function(data){
+            console.log(data);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
