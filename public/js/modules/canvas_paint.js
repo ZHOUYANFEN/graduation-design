@@ -1,4 +1,4 @@
-define(['jquery'], function($){
+define(['jquery', 'config'], function($, config){
 	var canvas,
 		context,
 		color_arr = {

@@ -1,4 +1,4 @@
-define(['jquery', 'canvas_paint'], function($, canvas_paint){
+define(['jquery', 'canvas_paint', 'config'], function($, canvas_paint, config){
 	//鼠标移动路径的坐标队列
 	var coor_queue = [];
 	//坐标够多少个后开始绘制

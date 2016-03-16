@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+var crypto = require('crypto');
 var User = require('../mongoDB/User');	//mongoDB module
 
 router.use(bodyParser.json()); // for parsing application/json
@@ -22,24 +23,39 @@ router.post('/reg', function(req, res){
 
 	//query the DB first to check if this user already exists
 	User.findByEmail(email, function(err, found){
+		if (err){	//error handle
+			res.status(500).send(err);
+			return ;
+		}
+
 		if (found.length !== 0){	
 			res.status(403).send({
 				code: 0,
-				error: 'email already exists'
+				description: 'email already exists'
 			})
 			return ;
 		}
 		User.findByPhone(phone, function(err2, found2){
+			if (err2){	//error handle
+				res.status(500).send(err);
+				return ;
+			}
+
 			if (found2.length !== 0){
 				res.status(403).send({
 					code: 0,
-					error: 'phone already exists'
+					description: 'phone already exists'
 				})
 				return ;
 			}
 
 			//this user haven't been regsiter yet, add him to the database
+			var	hash = crypto.createHash('sha256').update( new Date().getTime().toString() ).digest('hex');
+			if (hash.length > 15){
+				hash = hash.substr(0,15);
+			}			
 			var new_user = new User({
+				name: '新用户' + hash,
 				email: email,
 				phone: phone,
 				password: password
@@ -52,8 +68,9 @@ router.post('/reg', function(req, res){
 				}
 				res.status(200).send({
 					code: 1,
-					text: 'register successfully'
-				})
+					description: 'register successfully'
+				});
+
 			});
 
 		})
@@ -62,8 +79,56 @@ router.post('/reg', function(req, res){
 
 //user log in
 router.post('/log', function(req, res){
-	
-})
+	var login_callback = function(err, found){
+		if (err){	//error handle
+			res.status(500).send(err);
+			return ;
+		}
+		if (found.length > 0){
+			var user_found= found[0];
+			var user_password = user_found['password'];
+			if (user_password !== password){	//password incorrect
+				res.status(403).send({
+					code: 0,
+					description: 'password incorrect'
+				});
+			}else{		//password correct, log in successfully
+				res.status(200).send({
+					code: 1,
+					description: 'log in successfully',
+					user_data: {
+						_id: user_found['_id'],
+						name: user_found['name'],
+						email: user_found['email'],
+						phone: user_found['phone'],
+					}
+				});
+			}
+		}
+		else{	//user doesn't exist
+			res.status(403).send({
+				code: 0,
+				description: 'account does not exist'
+			});	
+		}
+	}
+
+	var account = req.body.account,
+		password = req.body.password;
+
+	if (account.match(/.+@.+/)){			//email
+		User.findByEmail(account, login_callback);
+	}else if (account.match(/^\d{11}$/)){	//phone
+		User.findByPhone(account, login_callback);
+	}else{									//name
+		User.findByName(account, login_callback);
+	}
+});
+
+//user update information
+router.post('/update', function(req, res){
+
+});
 
 
 module.exports = router;

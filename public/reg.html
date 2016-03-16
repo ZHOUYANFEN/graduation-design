@@ -37,43 +37,12 @@
       </div>           
       <div class="error"></div>
       <div class="submit-holder">
-        <img class="main-submit" src="image/registerBtn.png">
+        <img class="main-submit" src="image/reg.png">
       </div>
     </div>
 
-    <script src="js/tools/jquery.min.js"></script>
-    <script type="text/javascript">
-        $('#regEmail').val('123@qq.com');
-        $('#regPhone').val('12345678');
-        $('#regPassword').val('123');
-        $('#regPassword2').val('123');
 
-      $('.main-submit').on('click', function(event){
-        var email = $('#regEmail').val();
-        var phone = $('#regPhone').val();
-        var password = $('#regPassword').val();
-        var password2 = $('#regPassword2').val();
-        console.log(email+', '+password+', '+password2);
-
-        $.ajax({
-          url: '/api/user/reg',
-          type: 'POST',
-          data: {
-            email: email,
-            phone: phone,
-            password: password
-          },
-          dataType: 'json',
-          timeout: 10000,
-          error: function(err){
-            console.log('ajax error!');
-            console.log(err);
-          },
-          success: function(data){
-            console.log(data);
-          }
-        });
-      });
-    </script>
+    <!-- main javascript entrance -->
+    <script src="js/tools/require.js" data-main="js/reg.js"></script>
   </body>
 </html>
