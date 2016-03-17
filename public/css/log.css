@@ -39,10 +39,10 @@ body {
   width: 84%;
   height: 30px;
   padding-left: 58px;
+  color: #ff5757;
 }
 .main .error span {
   font: 15px/30px "Microsoft YaHei", "黑体", "宋体", sans-serif;
-  color: #ff5757;
 }
 .main .submit-holder {
   width: 78%;

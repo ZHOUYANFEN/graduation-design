@@ -7,13 +7,6 @@ var User = require('../mongoDB/User');	//mongoDB module
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({extended:true})); // for parsing application/x-www-form-urlencoded
 
-/*
-router.get('/user_debug', function(req, res, next){
-	// console.log(req.body)	// POST method
-	// console.log(req.query)	// GET method
-	res.send(req.baseUrl+', '+req.originalUrl+', '+req.url);
-});
-*/
 
 //user register
 router.post('/reg', function(req, res){

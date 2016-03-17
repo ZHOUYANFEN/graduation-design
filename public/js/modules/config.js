@@ -1,4 +1,4 @@
-define([], function(){
+define(function(){
 	return {
 		host: 'localhost',
 		cookieExpires: '24*60*60*1000',

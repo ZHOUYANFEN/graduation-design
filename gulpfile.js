@@ -34,7 +34,7 @@ gulp.task('less', function(){
 gulp.task('watch', function(){
 	//浏览器livereload监听html,css,js文件(不监听less和image)
 	livereload.listen();
-    gulp.watch('public/**/*.{html,css,js}', function (file) {
+    gulp.watch('{public/**,html}/*.{html,css,js}', function (file) {
         livereload.changed(file.path);
     });
 

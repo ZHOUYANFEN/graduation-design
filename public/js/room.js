@@ -6,6 +6,8 @@ require.config({
 		'jquery': 'tools/jquery.min',
 
 		//功能模块
+		'config': 'modules/config',
+		'cookie': 'modules/cookie',
 		'mouse_draw': 'modules/mouse_draw',
 		'canvas_paint': 'modules/canvas_paint'
 	}

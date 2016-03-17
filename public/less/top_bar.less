@@ -2,6 +2,8 @@
 
 @top-bar-height: 70px;
 #top-bar{
+	position: relative;		//要让z-index起效一定要设置
+	z-index: 10;
 	width: 100%;
 	height: @top-bar-height;
 	.place-holder{
@@ -46,6 +48,47 @@
 				margin: 20px 0 0 10px;
 				color: #fff;
 				cursor: pointer;
+			}
+			.hidden_first{
+				display: none;
+				width: 100px;
+				padding-top: 10px;
+				margin-left: 55px;
+
+				.triangle{
+					width: 0;
+					height: 0;
+					margin-left: 35px;
+					border-bottom: 13px solid #FFF;
+					border-right: 13px solid transparent;
+					border-left: 13px solid transparent;
+				}
+				.user_list{
+					color: #2e2e2e;
+					background-color: #FFF;
+					div{
+						width: 76%;
+						height: 40px;	
+						margin-left: 12%;
+						text-align: center;
+						color: #2e2e2e;
+						font: 17px/40px "黑体","宋体",sans-serif;
+						border-bottom: 1px solid #BDBDBD;
+						a{
+							color: #2e2e2e;
+							text-decoration: none;
+							&:hover{
+								color: #9E9E9E;
+							}
+						}
+						&.quit{
+							border: 0px;
+						}
+						&:hover{
+							color: #9E9E9E;
+						}
+					}
+				}
 			}
 		}
 	}

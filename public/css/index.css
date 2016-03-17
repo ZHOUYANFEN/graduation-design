@@ -11,6 +11,7 @@ body {
   height: 60px;
 }
 #navigation-bar .place-holder {
+  z-index: 5;
   position: fixed;
   width: 100%;
   min-width: 1000px;

@@ -7,6 +7,7 @@ require.config({
 
 		//功能模块
 		'config': 'modules/config',
+		'cookie': 'modules/cookie',
 		'register': 'modules/user'
 	}
 });

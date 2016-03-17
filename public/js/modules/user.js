@@ -71,7 +71,7 @@ define('login', ['jquery', 'config', 'cookie'], function($, config, cookie){
 					dataType: 'json',
 					timeout: 5000,
 					error: function(err){
-						login_lock = false;
+						login_lock = false;		//unlock the login request's lock
 						var description = err['responseJSON']['description'];
 						if (description == 'account does not exist'){
 							$('.main .error:eq(0)').html('<span>账号不存在</span>');
@@ -84,11 +84,15 @@ define('login', ['jquery', 'config', 'cookie'], function($, config, cookie){
 						error_reset();
 					},
 					success: function(data){
-						login_lock = false;
 						console.log(data);
-						/*
-							do something
-						*/
+						$('.main .error:eq(1)').css('color', '#12B926').html('<span>登录成功，正在跳转到首页...</span>');
+
+						cookie.clearAll();
+						cookie.setCookie('userId', data.user_data._id);
+						cookie.setCookie('userName', data.user_data.name);
+						cookie.setCookie('userEmail', data.user_data.email);
+						cookie.setCookie('userPhone', data.user_data.phone);
+						window.location.href = '/index.html';
 					}
 				});
 			}
