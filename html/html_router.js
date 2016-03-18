@@ -38,5 +38,13 @@ router.get('/reg.html', function(req, res){
 	}
 });
 
+router.get('/changePass.html', function(req, res){
+	if (req.cookies.userId){
+		res.sendFile(path.join(__dirname, 'changePass.html'));
+	}else{
+		res.redirect('/log.html');
+	}
+});
+
 
 module.exports = router;

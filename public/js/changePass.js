@@ -8,11 +8,11 @@ require.config({
 		//功能模块
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
-		'top_bar_user': 'modules/user'
+		'changePassword': 'modules/user'
 	}
 });
 
-//右上角个人信息
-require(['top_bar_user'], function(top_bar_user){
-	top_bar_user();
-});
+require(['changePassword'], function(changePassword){
+	changePassword();
+});	
+

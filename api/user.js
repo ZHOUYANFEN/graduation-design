@@ -20,7 +20,6 @@ router.post('/reg', function(req, res){
 			res.status(500).send(err);
 			return ;
 		}
-
 		if (found.length !== 0){	
 			res.status(403).send({
 				code: 0,
@@ -33,7 +32,6 @@ router.post('/reg', function(req, res){
 				res.status(500).send(err);
 				return ;
 			}
-
 			if (found2.length !== 0){
 				res.status(403).send({
 					code: 0,
@@ -109,13 +107,44 @@ router.post('/log', function(req, res){
 	var account = req.body.account,
 		password = req.body.password;
 
-	if (account.match(/.+@.+/)){			//email
+	if (account.match(/^(\w|\.)+@{1}(\w|\.)+$/)){			//email
 		User.findByEmail(account, login_callback);
 	}else if (account.match(/^\d{11}$/)){	//phone
 		User.findByPhone(account, login_callback);
 	}else{									//name
 		User.findByName(account, login_callback);
 	}
+});
+
+//user change password
+router.post('/changePass', function(req, res){
+	var _id = req.body.userId,
+		oldPassword = req.body.oldPassword,
+		newPassword = req.body.newPassword;
+	User.findById(_id, function (err, found){
+		if (err){	//userId incorrect
+			res.status(403).send(err);
+			return ;
+		}
+		if (oldPassword !== found.password){
+			res.status(403).send({
+				code: 0,
+				description: 'password incorrect'
+			});
+			return ;
+		}else{		//update the DB
+			User.update({_id: _id}, {password: newPassword}, function(error, row){
+				if (error){
+					res.status(500).send(error);
+					return ;
+				}
+				res.status(200).send({
+					code: 1,
+					description: 'change password successfully'
+				});
+			});
+		}
+	});
 });
 
 //user update information

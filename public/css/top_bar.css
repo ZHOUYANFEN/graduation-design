@@ -64,6 +64,7 @@
 #top-bar .place-holder .right .hidden_first .user_list {
   color: #2e2e2e;
   background-color: #FFF;
+  cursor: pointer;
 }
 #top-bar .place-holder .right .hidden_first .user_list div {
   width: 76%;

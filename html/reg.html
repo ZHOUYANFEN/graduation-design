@@ -1,48 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>注册</title>
-    <link rel="stylesheet" type="text/css" href="css/register.css" />
-  </head>
-  <body>
-    <div id="regModal">
-      <div class="error"></div>
-      <div class="input-line">
-        <div class="labels">
-          <span>邮箱</span>
-        </div>
-        <input type="email" id="regEmail" placeholder="输入邮箱"/>
-      </div>
-      <div class="error"></div>
-      <div class="input-line">
-        <div class="labels">
-          <span>手机号</span>
-        </div>
-        <input type="text" id="regPhone" placeholder="输入手机号"/>
-      </div>
-      <div class="error_email error"></div>
-      <div class="input-line">
-        <div class="labels">
-          <span>密码</span>
-        </div>
-        <input type="password" id="regPassword" placeholder="输入密码"/>
-      </div>           
-      <div class="error_password error"></div>
-      <div class="input-line">
-        <div class="labels">
-          <span>密码</span>
-        </div>
-        <input type="password" id="regPassword2" placeholder="再次输入密码"/>
-      </div>           
-      <div class="error"></div>
-      <div class="submit-holder">
-        <img class="main-submit" src="image/reg.png">
-      </div>
+<head>
+  <meta charset="utf-8">
+  <title>注册</title>
+  <link rel="stylesheet" type="text/css" href="css/reg.min.css" />
+</head>
+<body>
+  <div class="main">
+    <div class="input-line">
+      <input type="email" id="regEmail" placeholder="输入邮箱"/>
     </div>
+    <div class="error"></div>
+    <div class="input-line">
+      <input type="text" id="regPhone" placeholder="输入手机号"/>
+    </div>
+    <div class="error"></div>
+    <div class="input-line">
+      <input type="password" id="regPassword" placeholder="输入密码"/>
+    </div>
+    <div class="error"></div>
+    <div class="input-line">
+      <input type="password" id="regPassword2" placeholder="再次输入密码"/>
+    </div>
+    <div class="error"></div>
 
+    <div class="submit-holder">
+      <img class="main-submit" src="image/reg.png">
+    </div>
+    <div class="back">
+      <a href="/log.html">已有账号，登录</a>
+    </div>
+  </div>
 
-    <!-- main javascript entrance -->
-    <script src="js/tools/require.js" data-main="js/reg.js"></script>
-  </body>
+  <!-- main javascript entrance -->
+  <script src="js/tools/require.js" data-main="js/reg.js"></script>
+</body>
 </html>

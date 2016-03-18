@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>修改密码</title>
+  <link rel="stylesheet" type="text/css" href="css/changePass.min.css" />
+</head>
+<body>
+  <div class="main">
+    <div class="input-line">
+      <input type="password" id="oldPassword" placeholder="输入旧密码"/>
+    </div>
+    <div class="error"></div>
+    <div class="input-line">
+      <input type="password" id="newPassword" placeholder="输入新密码"/>
+    </div>
+    <div class="error"></div>
+    <div class="input-line">
+      <input type="password" id="newPassword2" placeholder="再次输入新密码"/>
+    </div>
+    <div class="error"></div>
+
+    <div class="submit-holder">
+      <img class="main-submit" src="image/confirm.png">
+    </div>
+    <div class="back">
+      <a href="/index.html">返回首页</a>
+    </div>
+  </div>
+
+  <!-- main javascript entrance -->
+  <script src="js/tools/require.js" data-main="js/changePass.js"></script>
+</body>
+</html>
