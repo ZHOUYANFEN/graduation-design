@@ -7,7 +7,10 @@ define(function(){
 				log: ['/api/user/log', 'POST'],
 				reg: ['/api/user/reg', 'POST'],
 				changePass: ['/api/user/changePass', 'POST'],
-				update: ['/api/user/update', 'POST']
+				update: ['/api/user/update', 'POST'],
+			},
+			room: {
+				createRoom: ['api/room/createRoom', 'POST'],
 			}
 		}
 	}

@@ -7,8 +7,9 @@ body {
 }
 #main-content {
   margin: 25px auto;
+  margin-bottom: 0;
   width: 94%;
-  height: 85%;
+  height: 84%;
   min-height: 480px;
   min-width: 980px;
 }

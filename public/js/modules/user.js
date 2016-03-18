@@ -93,7 +93,6 @@ define('register', ['jquery', 'config', 'cookie'], function($, config, cookie){
 	};
 });
 
-
 //登录模块
 define('login', ['jquery', 'config', 'cookie'], function($, config, cookie){
 	var error_reset = function(){	//click other place to remove the error message
@@ -242,42 +241,4 @@ define('changePassword', ['jquery', 'config', 'cookie'], function($, config, coo
 			}
 		});
 	};
-});
-
-//顶栏右上角用户信息模块
-define('top_bar_user', ['jquery', 'cookie'], function($, cookie){
-	return function(){
-		//加载用户名
-		var userName = cookie.getCookie('userName');
-		if (userName.length > 9){
-			userName = userName.substr(0, 9) + '...';	
-		}
-		$('#top-bar .right h3').text(userName);
-		
-		//鼠标移动后，展开/隐藏
-		var cnt = 0;
-		$('#top-bar .right h3').on('mouseenter', function(event){
-			var $hidden = $(this).parent().find('.hidden_first');
-			$hidden.css('display', 'block');
-
-			$hidden.unbind('mouseenter').one('mouseenter', function(){
-				cnt ++;
-			});
-			$hidden.unbind('mouseleave').one('mouseleave', function(){
-				$hidden.css('display', 'none');
-				cnt = 0;
-			});
-		});
-		$('#top-bar .right').on('mouseleave', function(event){
-			if (cnt == 0){
-				$(this).find('.hidden_first').css('display', 'none');
-			}
-		});
-
-		//点击退出按钮
-		$('#top-bar .right .hidden_first .quit').on('click', function(){
-			cookie.clearAll();
-			window.location.href = '/log.html';
-		});
-	}
 });

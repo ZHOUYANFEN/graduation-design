@@ -26,6 +26,17 @@
 #top-bar .place-holder .left a:visited {
   color: #fff;
 }
+#top-bar .place-holder .medium {
+  float: left;
+  width: 300px;
+  height: 70px;
+}
+#top-bar .place-holder .medium h3 {
+  margin: 19px 0 0 100px;
+  font: 25px "黑体", "宋体", sans-serif;
+  color: #fff;
+  cursor: pointer;
+}
 #top-bar .place-holder .right {
   float: right;
   width: 270px;
@@ -87,6 +98,73 @@
 }
 #top-bar .place-holder .right .hidden_first .user_list div:hover {
   color: #9E9E9E;
+}
+#roomModal .modal-dialog {
+  width: 500px;
+}
+#roomModal .modal-dialog .modal-content {
+  width: 500px;
+}
+#roomModal .modal-dialog .modal-content .closeModal {
+  width: 100%;
+  height: 23px;
+}
+#roomModal .modal-dialog .modal-content .closeModal img {
+  float: right;
+  cursor: pointer;
+  width: 17px;
+  margin: 10px 10px 0 0;
+}
+#roomModal .modal-dialog .modal-content .input-line {
+  margin: 22px 0;
+  width: 100%;
+}
+#roomModal .modal-dialog .modal-content .input-line .label {
+  margin-left: 30px;
+  font: 17px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#roomModal .modal-dialog .modal-content .input-line .label.textarea {
+  vertical-align: top;
+}
+#roomModal .modal-dialog .modal-content .input-line input {
+  width: 65%;
+  height: 28px;
+  margin-left: 8px;
+  padding-left: 10px;
+  font: 16px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+  color: #848484;
+  background-color: #F8F8F8;
+  border: 1px solid #BDBDBD;
+  border-radius: 5px;
+}
+#roomModal .modal-dialog .modal-content .input-line .kinds {
+  display: inline-block;
+  margin-left: 21px;
+}
+#roomModal .modal-dialog .modal-content .input-line .kinds span {
+  background-color: #EBEBEB;
+  padding: 5px 8px;
+  margin: 0 4px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#roomModal .modal-dialog .modal-content .input-line .kinds span.active {
+  background-color: #ACABAB;
+}
+#roomModal .modal-dialog .modal-content .input-line textarea {
+  margin-left: 24px;
+  padding: 4px;
+  width: 65%;
+  height: 80px;
+  font: 16px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#roomModal .modal-dialog .modal-content .submit-holder {
+  width: 30%;
+  margin: 0 0 20px 35%;
+  cursor: pointer;
+}
+#roomModal .modal-dialog .modal-content .submit-holder .main-submit {
+  width: 100%;
 }
 /*
 	@media screen and (min-width: 1000px){}

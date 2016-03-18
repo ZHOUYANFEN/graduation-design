@@ -42,13 +42,5 @@ UserSchema.static({
 
 var User = mongoose.model('User', UserSchema);
 
+
 module.exports = User;
-
-/*
-var Drink = mongoose.model('Drink', schema);
-Drink.findByName('sanpellegrino', function (err, drinks) {
-
-});
-*/
-
-
