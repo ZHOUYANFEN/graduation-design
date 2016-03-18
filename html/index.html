@@ -5,11 +5,15 @@
   <title>首页</title>
   <link rel="stylesheet" href="css/top_bar.min.css" type="text/css">
   <link rel="stylesheet" href="css/index.min.css" type="text/css"></head>
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"></head>
 <body>
   <div id="top-bar">
     <div class="place-holder">
       <div class="left">
         <a href="/index.html">在线画板平台</a>
+      </div>
+      <div class="medium">
+        <h3 data-toggle="modal" data-target="#roomModal">创建房间</h3>
       </div>
       <div class="right">
         <div class="img-holder">
@@ -19,10 +23,10 @@
         <div class="hidden_first">
           <div class="triangle"></div>
           <div class="user_list">
-            <div class="updateInfo" data-toggle="modal" data-target="#updateInfoModal">
+            <div class="updateInfo">
               <a href="/update.html">修改资料</a>
             </div>
-            <div class="changePass" data-toggle="modal" data-target="#changePassModal">
+            <div class="changePass">
               <a href="/changePass.html">修改密码</a>
             </div>
             <div class="quit">退出</div>
@@ -326,13 +330,47 @@
           <a href="?page=8">...</a>
         </li>
         -->
-      </ul>
-    </div>
-    <div class="next-page">
-      <a href="?page=3">下一页</a>
+        </ul>
+      </div>
+      <div class="next-page">
+        <a href="?page=3">下一页</a>
+      </div>
     </div>
   </div>
-</div>
+
+
+  <!-- Modal -->  
+  <div class="modal fade" id="roomModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="closeModal" data-dismiss="modal">
+          <img src="image/close.png">
+        </div>
+        <div class="input-line">
+          <span class="label">房间名:</span>
+          <input type="text" id="roomName" placeholder="输入你创建房间的名称"/>
+        </div>
+        <div class="input-line">
+          <span class="label">分类:</span>
+          <div class="kinds">
+            <span class="active">全部</span>
+            <span>高中</span>
+            <span>初中</span>
+            <span>小学</span>
+            <span>其它</span>
+          </div>
+        </div>
+        <div class="input-line">
+          <span class="label textarea">描述:</span>
+          <textarea placeholder="输入你对该房间的描述"></textarea> 
+        </div>        
+        <div class="submit-holder">
+          <img class="main-submit" src="image/confirm.png">
+        </div>
+      </div>
+    </div>     
+  </div>
+
 
 <!-- main javascript entrance -->
 <script src="js/tools/require.js" data-main="js/index.js"></script>
