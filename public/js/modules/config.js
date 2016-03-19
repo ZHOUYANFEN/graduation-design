@@ -10,6 +10,7 @@ define(function(){
 				update: ['/api/user/update', 'POST'],
 			},
 			room: {
+				hasCreatedRoom: ['api/room/hasCreatedRoom', 'GET'],
 				createRoom: ['api/room/createRoom', 'POST'],
 			}
 		}

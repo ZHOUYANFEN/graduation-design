@@ -32,10 +32,15 @@
   height: 70px;
 }
 #top-bar .place-holder .medium h3 {
+  display: none;
   margin: 19px 0 0 100px;
   font: 25px "黑体", "宋体", sans-serif;
   color: #fff;
   cursor: pointer;
+}
+#top-bar .place-holder .medium h3 a {
+  text-decoration: none;
+  color: #fff;
 }
 #top-bar .place-holder .right {
   float: right;
@@ -116,7 +121,7 @@
   margin: 10px 10px 0 0;
 }
 #roomModal .modal-dialog .modal-content .input-line {
-  margin: 22px 0;
+  margin: 22px 0 0 0;
   width: 100%;
 }
 #roomModal .modal-dialog .modal-content .input-line .label {
@@ -157,6 +162,15 @@
   width: 65%;
   height: 80px;
   font: 16px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#roomModal .modal-dialog .modal-content .error {
+  width: 84%;
+  height: 30px;
+  padding-left: 96px;
+  color: #ff5757;
+}
+#roomModal .modal-dialog .modal-content .error span {
+  font: 17px "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 #roomModal .modal-dialog .modal-content .submit-holder {
   width: 30%;

@@ -13,7 +13,8 @@
         <a href="/index.html">在线画板平台</a>
       </div>
       <div class="medium">
-        <h3 data-toggle="modal" data-target="#roomModal">创建房间</h3>
+        <h3 class="createRoom" data-toggle="modal" data-target="#roomModal">创建房间</h3>
+        <h3 class="returnRoom"><a href="">返回所在房间</a></h3>
       </div>
       <div class="right">
         <div class="img-holder">
@@ -338,7 +339,6 @@
     </div>
   </div>
 
-
   <!-- Modal -->  
   <div class="modal fade" id="roomModal" role="dialog">
     <div class="modal-dialog">
@@ -363,14 +363,14 @@
         <div class="input-line">
           <span class="label textarea">描述:</span>
           <textarea placeholder="输入你对该房间的描述"></textarea> 
-        </div>        
+        </div>
+        <div class="error"></div>
         <div class="submit-holder">
           <img class="main-submit" src="image/confirm.png">
         </div>
       </div>
     </div>     
   </div>
-
 
 <!-- main javascript entrance -->
 <script src="js/tools/require.js" data-main="js/index.js"></script>

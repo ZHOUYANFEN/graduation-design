@@ -33,10 +33,15 @@
 			width: 300px;
 			height: @top-bar-height;
 			h3{
+				display: none;
 				margin: 19px 0 0 100px;
 				font: 25px "黑体","宋体",sans-serif;
 				color: #fff;
 				cursor: pointer;
+				a{
+					text-decoration: none;
+					color: #fff;
+				}
 			}
 		}
 		.right{
@@ -123,7 +128,7 @@
 				}
 			}
 			.input-line{
-				margin: 22px 0;
+				margin: 22px 0 0 0;
 				width: 100%;
 				.label{
 					margin-left: 30px;
@@ -165,6 +170,15 @@
 					font: 16px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 				}
 
+			}
+			.error{
+				width: 84%;
+				height: 30px;
+				padding-left: 96px;
+				color: #ff5757;
+				span{
+					font: 17px "Microsoft YaHei","黑体","宋体",sans-serif;
+				}
 			}
 			.submit-holder{
 				width: 30%;
