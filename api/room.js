@@ -6,6 +6,21 @@ var crypto = require('crypto');
 
 var roomList = [];	//all rooms
 
+
+// for (var i = 0; i < 10; i++) {
+// 	var newRoom = {
+// 		ownerUserId: 'userId',
+// 		ownUserName: 'userName',
+// 		roomId: 'roomId',
+// 		roomName: 'roomName',
+// 		roomKind: '全部',
+// 		roomDescription: 'roomDescription',
+// 		members: []
+// 	}
+// 	roomList.push(newRoom);
+// }
+
+
 router.use(cookieParser());
 router.use(bodyParser.json()); // for parsing application/json
 router.use(bodyParser.urlencoded({extended:true})); // for parsing application/x-www-form-urlencoded
@@ -38,8 +53,8 @@ router.post('/createRoom', function(req, res){
 		roomKind = req.body.roomKind,
 		roomDescription = req.body.roomDescription;
 	var	roomId = crypto.createHash('sha256').update( new Date().getTime().toString() ).digest('hex');
-	if (roomId.length > 20){
-		roomId = roomId.substr(0,20);
+	if (roomId.length > 15){
+		roomId = roomId.substr(0,15);
 	}	
 	var userId = unescape(req.cookies.userId),
 		userName = unescape(req.cookies.userName);
@@ -78,7 +93,53 @@ router.post('/createRoom', function(req, res){
 
 //get all rooms exist
 router.get('/getRoomList', function(req, res){
+	var skip, total;
+	if (req.query.skip.match(/\d+/) && req.query.total.match(/\d+/)){
+		skip = parseInt(req.query.skip);
+		total = parseInt(req.query.total);
+	}else{
+		res.status(403).send({
+			code: 0,
+			description: 'parameters wrong'
+		});
+	}
 
+	var roomKind = req.query.roomKind;
+	var roomList_classify = [];
+	if (roomKind == '全部'){
+		roomList_classify = roomList;
+	}else{
+		for (var i = 0; i < roomList.length; i++) {
+			if (roomList[i]['roomKind'] == roomKind){
+				roomList_classify.push(roomList[i]);
+			}
+		}
+	}
+
+	if (skip > roomList_classify.length){
+		res.status(200).send({
+			code: 1,
+			roomList: []
+		});
+	}else if (skip + total > roomList_classify.length){
+		var rooms = [];
+		for (var i = skip; i < roomList_classify.length; i++) {
+			rooms.push(roomList_classify[i]);
+		}
+		res.status(200).send({
+			code: 1,
+			roomList: rooms
+		});
+	}else{
+		var rooms = [];
+		for (var i = skip; i < skip + total; i++) {
+			rooms.push(roomList_classify[i]);
+		}
+		res.status(200).send({
+			code: 1,
+			roomList: rooms
+		});
+	}
 });
 
 
