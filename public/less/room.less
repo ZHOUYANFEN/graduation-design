@@ -7,82 +7,101 @@ html,body{
 }
 
 #main-content{
-	margin: 25px auto;
+	margin: 25px 20px;
 	margin-bottom: 0;
-	width: 94%;
 	height: 84%;
 	min-height: 480px;
 	min-width: 980px;
 	.left{
 		float: left;
-		width: 240px;
+		width: 200px;
 		height: 100%;
-		background-color: #96999c;
-		margin-right: 20px;
-		.palette{
-			overflow: hidden;
-			padding-left: 5px;
-			h3{
-				margin: 10px 0 0 0;
-			}
-			h4{
-				float: left;
-				font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
-				margin: 6px 0 5px 7px;
-			}
-			.all-colors{
-				h4{
-					margin-top: 14px;
-				}
-				.colors{
-					overflow: hidden;
-					border-spacing: 13px;
-					tr{
-						td{
-							width: 27px;
-							height: 27px;
-							cursor: pointer;
-						}
-					}
-				}
-			}
-			.current-color{
-				overflow: hidden;
-				div{
-					float: left;
-					margin: 4px 0 0 15px;
-					width: 80px;
-					height: 28px;
-				}
-			}
-			.line-weight{
-				overflow: hidden;
-				.options{
-					float: left;
-					width: 130px;
-					margin: 4px 0 0 7px;
-					div{
-						display: inline-block;
-						text-align: center;
-						cursor: pointer;
-						width: 25px;
-						margin: 0 3px;
-						font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
-						&.active{
-							border: 2px solid #000;
-						}
-					}
-				}
-			}
-		}
+		background-color: #9EA1A4;
+		margin-right: 15px;
 	}
-	.right{
+	.center{
 		// width: 78%;
 		height: 100%;
 		background-color: #fff;
 		overflow: hidden;
 		cursor: crosshair;
 	}
+
+	.palette{
+		float: right;
+		height: 100%;
+		width: 115px;
+		background-color: #96999c;
+		padding-left: 5px;
+		margin-left: 15px;
+		h3{
+			margin: 10px 0 0 0;
+		}
+		h4{
+			float: left;
+			font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+			margin: 0 0 0 7px;
+		}
+		.all-colors{
+			h4{
+				margin-top: 10px;
+				margin-bottom: 0;
+				width: 80%;
+			}
+			.colors{
+				overflow: hidden;
+				border-spacing: 15px;
+				tr{
+					td{
+						width: 30px;
+						height: 30px;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		.current-color{
+			overflow: hidden;
+			h4{
+				margin-top: 10px;
+			}
+			div{
+				float: left;
+				margin: 6px 0 15px 15px;
+				width: 80px;
+				height: 28px;
+				p{
+					width: 52px;
+					margin: 3px auto;
+					font: bold 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+				}
+			}
+		}
+		.line-weight, .eraser{
+			overflow: hidden;
+			h4{
+				margin-top: 10px;
+			}
+			.options{
+				float: left;
+				width: 100%;
+				margin: 4px 0 0 5px;
+				div{
+					display: inline-block;
+					text-align: center;
+					cursor: pointer;
+					width: 25px;
+					margin: 0 2px;
+					font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+					&.active{
+						border: 2px solid #000;
+					}
+				}
+			}
+		}
+
+	}
+
 }
 
 

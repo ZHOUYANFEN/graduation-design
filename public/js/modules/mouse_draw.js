@@ -7,7 +7,7 @@ define(['jquery', 'canvas_paint', 'config'], function($, canvas_paint, config){
 	return {
 		init: function(){
 			//主画布上的mouse事件
-			$('#main-content .right').on('mousedown', function(event1){
+			$('#main-content .center').on('mousedown', function(event1){
 				var offsetLeft = $(this).offset().left,
 					offsetTop = $(this).offset().top;
 

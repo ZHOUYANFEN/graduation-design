@@ -6,77 +6,98 @@ body {
   background-color: #b8b8b0;
 }
 #main-content {
-  margin: 25px auto;
+  margin: 25px 20px;
   margin-bottom: 0;
-  width: 94%;
   height: 84%;
   min-height: 480px;
   min-width: 980px;
 }
 #main-content .left {
   float: left;
-  width: 240px;
+  width: 200px;
   height: 100%;
-  background-color: #96999c;
-  margin-right: 20px;
+  background-color: #9EA1A4;
+  margin-right: 15px;
 }
-#main-content .left .palette {
-  overflow: hidden;
-  padding-left: 5px;
-}
-#main-content .left .palette h3 {
-  margin: 10px 0 0 0;
-}
-#main-content .left .palette h4 {
-  float: left;
-  font: 18px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
-  margin: 6px 0 5px 7px;
-}
-#main-content .left .palette .all-colors h4 {
-  margin-top: 14px;
-}
-#main-content .left .palette .all-colors .colors {
-  overflow: hidden;
-  border-spacing: 13px;
-}
-#main-content .left .palette .all-colors .colors tr td {
-  width: 27px;
-  height: 27px;
-  cursor: pointer;
-}
-#main-content .left .palette .current-color {
-  overflow: hidden;
-}
-#main-content .left .palette .current-color div {
-  float: left;
-  margin: 4px 0 0 15px;
-  width: 80px;
-  height: 28px;
-}
-#main-content .left .palette .line-weight {
-  overflow: hidden;
-}
-#main-content .left .palette .line-weight .options {
-  float: left;
-  width: 130px;
-  margin: 4px 0 0 7px;
-}
-#main-content .left .palette .line-weight .options div {
-  display: inline-block;
-  text-align: center;
-  cursor: pointer;
-  width: 25px;
-  margin: 0 3px;
-  font: 18px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
-}
-#main-content .left .palette .line-weight .options div.active {
-  border: 2px solid #000;
-}
-#main-content .right {
+#main-content .center {
   height: 100%;
   background-color: #fff;
   overflow: hidden;
   cursor: crosshair;
+}
+#main-content .palette {
+  float: right;
+  height: 100%;
+  width: 115px;
+  background-color: #96999c;
+  padding-left: 5px;
+  margin-left: 15px;
+}
+#main-content .palette h3 {
+  margin: 10px 0 0 0;
+}
+#main-content .palette h4 {
+  float: left;
+  font: 18px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+  margin: 0 0 0 7px;
+}
+#main-content .palette .all-colors h4 {
+  margin-top: 10px;
+  margin-bottom: 0;
+  width: 80%;
+}
+#main-content .palette .all-colors .colors {
+  overflow: hidden;
+  border-spacing: 15px;
+}
+#main-content .palette .all-colors .colors tr td {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+#main-content .palette .current-color {
+  overflow: hidden;
+}
+#main-content .palette .current-color h4 {
+  margin-top: 10px;
+}
+#main-content .palette .current-color div {
+  float: left;
+  margin: 6px 0 15px 15px;
+  width: 80px;
+  height: 28px;
+}
+#main-content .palette .current-color div p {
+  width: 52px;
+  margin: 3px auto;
+  font: bold 17px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#main-content .palette .line-weight,
+#main-content .palette .eraser {
+  overflow: hidden;
+}
+#main-content .palette .line-weight h4,
+#main-content .palette .eraser h4 {
+  margin-top: 10px;
+}
+#main-content .palette .line-weight .options,
+#main-content .palette .eraser .options {
+  float: left;
+  width: 100%;
+  margin: 4px 0 0 5px;
+}
+#main-content .palette .line-weight .options div,
+#main-content .palette .eraser .options div {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  width: 25px;
+  margin: 0 2px;
+  font: 18px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#main-content .palette .line-weight .options div.active,
+#main-content .palette .eraser .options div.active {
+  border: 2px solid #000;
 }
 .black {
   background-color: #000000;

@@ -19,7 +19,7 @@ require(['top_bar_userinfo'], function(top_bar_userinfo){
 });
 
 
-//初始化
+//画布与调色板初始化，绑定鼠标移动事件
 require(['mouse_draw', 'canvas_paint'], function(mouse_draw, canvas_paint){
 	mouse_draw.init();
 	canvas_paint.init();

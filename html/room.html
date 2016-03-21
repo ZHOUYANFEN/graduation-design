@@ -34,45 +34,63 @@
   </div>
 
   <div id="main-content">
+    <!-- 左边房间信息 + 成员列表 -->
     <div class="left">
       <div class="description"></div>
-      <div class="palette">
-        <h3>调色板:</h3>
-        <div class="all-colors">
-          <h4>颜色:</h4>
-          <table class="colors">
-            <tr>
-              <td class="black"></td>
-              <td class="red"></td>
-              <td class="blue"></td>
-              <td class="green"></td>
-            </tr>
-            <tr>
-              <td class="yellow"></td>
-              <td class="purple"></td>
-              <td class="orange"></td>
-              <td class="white"></td>
-            </tr>
-          </table>
+    </div>
+
+    <!-- 右边栏调色板 -->
+    <div class="palette">
+      <!-- <h3>调色板:</h3> -->
+      <div class="all-colors">
+        <h4>颜色板:</h4>
+        <table class="colors">
+          <tr>
+            <td class="black"></td>
+            <td class="red"></td>
+          </tr>
+          <tr>
+            <td class="blue"></td>
+            <td class="green"></td>
+          </tr>
+          <tr>
+            <td class="yellow"></td>
+            <td class="purple"></td>
+          </tr>
+          <tr>
+            <td class="orange"></td>
+            <td class="white"></td>
+          </tr>
+        </table>
+      </div>
+      <div class="current-color">
+        <h4>当前画笔:</h4>
+        <div class="black"></div>
+      </div>
+      <div class="line-weight">
+        <h4>线条粗细:</h4>
+        <div class="options">
+          <div class="light active">细</div>
+          <div class="medium">中</div>
+          <div class="bold">粗</div>
         </div>
-        <div class="current-color">
-          <h4>当前颜色:</h4>
-          <div class="black"></div>
-        </div>
-        <div class="line-weight">
-          <h4>线条粗细:</h4>
-          <div class="options">
-            <div class="light active">细</div>
-            <div class="medium">中</div>
-            <div class="bold">粗</div>
-          </div>
+      </div>
+      <div class="eraser">
+        <h4>橡皮擦:</h4>
+        <div class="options">
+          <div class="small">小</div>
+          <div class="medium">中</div>
+          <div class="big">大</div>
         </div>
       </div>
     </div>
-    <div class="right">
-      <!-- 核心画板区域 -->
+
+    <!-- 中间核心画板区域 -->
+    <div class="center">
       <canvas id="main-canvas"></canvas>
     </div>
+
+
   </div>
 
   <!-- main javascript entrance -->
