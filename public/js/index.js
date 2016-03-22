@@ -83,16 +83,9 @@ require(['cookie', 'jquery', 'config'], function(cookie, $, config){
 								timeout: 10000,
 								error: function(err){
 									lock = false;		//unlock the request's lock
-									if (err.status == 403){	//already created a room
-										$('#roomModal .error')
-										.html('<span>你之前已创建房间！点击<a href="/room.html?roomId='
-										 + err['responseJSON']['user_data']['roomId']
-										 + '"> 这里 </a>进入</span>');
-									}
-									else{	
-										$('#roomModal .error').html('<span>连接服务器出错</span>');
-										error_reset();
-									}
+									$('#roomModal .error').html('<span>连接服务器出错</span>');
+									error_reset();
+									
 								},
 								success: function(data){
 									$('#roomModal .error').css('color', '#12B926').html('<span>创建成功，正在跳转到房间...</span>');

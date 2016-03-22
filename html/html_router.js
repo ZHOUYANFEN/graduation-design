@@ -3,8 +3,10 @@ var express = require('express'),
 	path = require('path'),
 	cookieParser = require('cookie-parser');
 var router = express.Router();
+var addUserToRoom = require('../api/room').addUserToRoom;
 
 router.use(cookieParser());
+
 
 router.get(/^(\/{1}|(\/index.html))$/, function(req, res){
 	if (!req.cookies.userId){		//haven't logged in yet
@@ -18,7 +20,17 @@ router.get('/room.html', function(req, res){
 	if (!req.cookies.userId){
 		res.redirect('/log.html');
 	}else{
-		res.sendFile(path.join(__dirname, 'room.html'));
+		var roomId = req.query.roomId;
+		var user = {
+			userId:  unescape(req.cookies.userId),
+			userName: unescape(req.cookies.userName)
+		}
+		var result = addUserToRoom(user, roomId);
+		if (result == 'room does not exist'){//room Id is something wrong
+			res.status(404).send('Room does not exist!');
+		}else{
+			res.sendFile(path.join(__dirname, 'room.html'));
+		}
 	}
 });
 

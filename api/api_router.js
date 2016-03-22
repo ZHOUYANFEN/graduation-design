@@ -1,9 +1,9 @@
-//the entrance module of all APIs
+//the entrance router module of all APIs
 var express = require('express');
 var router = express.Router();
 
 var user = require('./user');
-var room = require('./room');
+var room = require('./room').router;
 
 router.use('/user', user);
 router.use('/room', room);

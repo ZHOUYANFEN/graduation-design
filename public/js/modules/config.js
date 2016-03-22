@@ -13,6 +13,7 @@ define(function(){
 				hasCreatedRoom: ['api/room/hasCreatedRoom', 'GET'],
 				createRoom: ['api/room/createRoom', 'POST'],
 				getRoomList: ['api/room/getRoomList', 'GET'],
+				getRoomInfo: ['api/room/getRoomInfo', 'GET'],
 			}
 		}
 	}

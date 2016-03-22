@@ -24,7 +24,10 @@ define(['jquery', 'config'], function($, config){
 
 			//canvas的宽高填充整个区域
 			canvas.width = $('#main-content .center').width();
-			canvas.height = $('#main-content .center').height()
+			canvas.height = $('#main-content .center').height();
+			//以白色填充画布
+			context.fillStyle = color_arr['white'];
+			context.fillRect(0, 0, canvas.width, canvas.height);
 			//窗口大小调整时，重定义canvas宽高
 			// $(window).on('resize', function(event){
 			// 	canvas.width = $('#main-content .center').width();
@@ -69,9 +72,9 @@ define(['jquery', 'config'], function($, config){
 				if ($(this).hasClass('small')){
 					eraser_size = 7;
 				}else if ($(this).hasClass('medium')){
-					eraser_size = 14;
+					eraser_size = 15;
 				}else{
-					eraser_size = 21;
+					eraser_size = 30;
 				}
 			});
 

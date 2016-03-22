@@ -4,22 +4,7 @@ var bodyParser = require('body-parser');
 var	cookieParser = require('cookie-parser');
 var crypto = require('crypto');
 
-var roomList = [];	//all rooms
-
-
-// for (var i = 0; i < 10; i++) {
-// 	var newRoom = {
-// 		ownerUserId: 'userId',
-// 		ownUserName: 'userName',
-// 		roomId: 'roomId',
-// 		roomName: 'roomName',
-// 		roomKind: '全部',
-// 		roomDescription: 'roomDescription',
-// 		members: []
-// 	}
-// 	roomList.push(newRoom);
-// }
-
+var roomList = [];	//all rooms information
 
 router.use(cookieParser());
 router.use(bodyParser.json()); // for parsing application/json
@@ -142,11 +127,45 @@ router.get('/getRoomList', function(req, res){
 	}
 });
 
-
-/*
-router.get('/room_debug', function(req, res){
-	res.send(req.baseUrl+', '+req.originalUrl+', '+req.url);
+//get one room's information
+router.get('/getRoomInfo', function(req, res){
+	var roomId = req.query.roomId;
+	for (var i = 0; i < roomList.length; i++) {
+		if (roomId == roomList[i]['roomId']){
+			res.status(200).send({
+				code: 1,
+				room: roomList[i]
+			});
+			return ;
+		}
+	}
+	res.status(403).send({
+		code: 0,
+		description: 'get room information error'
+	});
 });
-*/
 
-module.exports = router;
+//user quit a room
+router.post('/quitRoom', function(req, res){
+
+});
+
+
+//add users to current room when thev visit '/room.html'
+exports.addUserToRoom = function(user, roomId){
+	for (var i = 0; i < roomList.length; i++) {
+		if (roomId == roomList[i]['roomId']){
+			for (var j = 0; j < roomList[i]['members'].length; j ++){
+				if (user['userId'] == roomList[i]['members'][j]['userId']){
+					return 'user is already in this room';
+				}
+			}
+			//user join this room
+			roomList[i]['members'].push(user);
+			return 'add user to room successfully';
+		}
+	}
+	return 'room does not exist';
+}
+//module.exports = router;
+exports.router = router;	//express's router for room api

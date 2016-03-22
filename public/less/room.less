@@ -14,10 +14,56 @@ html,body{
 	min-width: 980px;
 	.left{
 		float: left;
-		width: 200px;
+		width: 230px;
 		height: 100%;
-		background-color: #9EA1A4;
+		background-color: #A4A4A4;
 		margin-right: 15px;
+		.room-info{
+			padding: 4px;
+			ul{
+				list-style: none;
+				margin: 0;
+				padding: 1px;
+				li{
+					word-break:break-all;
+					padding: 2px;
+					font: 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+					span{
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.members{
+			h3{
+				font: bold 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+				margin: 0 2px 3px 7px;
+			}
+			ul{
+				overflow: auto;
+				height: 135px;
+				margin: 0 18px;
+				padding: 0;
+				list-style: none;
+				background-color: #ffffff;
+				li{
+					position: relative;
+					white-space:nowrap;
+					overflow: hidden;
+					margin: 1px 0;
+					width: 100%;
+					img{
+						position: absolute;
+						top: 3px;
+						left: 4px;
+						width: 15px;
+					}
+					span{
+						margin-left: 23px;
+					}
+				}
+			}
+		}
 	}
 	.center{
 		// width: 78%;
@@ -31,14 +77,13 @@ html,body{
 		float: right;
 		height: 100%;
 		width: 115px;
-		background-color: #96999c;
+		background-color: #A4A4A4;
 		padding-left: 5px;
 		margin-left: 15px;
 		h3{
 			margin: 10px 0 0 0;
 		}
 		h4{
-			float: left;
 			font: 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 			margin: 0 0 0 7px;
 		}
@@ -79,6 +124,7 @@ html,body{
 		}
 		.line-weight, .eraser{
 			overflow: hidden;
+			margin-bottom: 8px;
 			h4{
 				margin-top: 10px;
 			}
