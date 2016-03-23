@@ -37,7 +37,12 @@
     <!-- 左边房间信息 + 成员列表 -->
     <div class="left">
       <div class="handlebars">
-        <!--  -->
+        <div class="room-info">
+          <!--  -->
+        </div>
+        <div class="members">
+          <!--  -->
+        </div>
       </div>
     </div>
 
@@ -91,42 +96,39 @@
     <div class="center">
       <canvas id="main-canvas"></canvas>
     </div>
-
   </div>
 
 
-  <!-- room information + members-->
-  <script id="room-template" type="text/x-handlebars-template">
-    <div class="room-info">
-      <ul>
-        <li>
-          <span>房间名: </span>{{roomName}}
-        </li>
-        <li>
-          <span>创建人: </span>{{ownUserName}}
-        </li>
-        <li>
-          <span>分类标签: </span>{{roomKind}}
-        </li>
-        <li>
-          <span>房间介绍: </span>{{roomDescription}}
-        </li>
-      </ul>
-    </div>
-
-    <div class="members">
-      <h3>房间成员:</h3>
-      <ul>
-        {{#each members}}
-          <li data-userId={{userId}}>
-            <img src="image/green.jpg">
-            <span class="member-name">{{userName}}</span>
-          </li>
-        {{/each}}
-      </ul> 
-    </div>
+  <!-- room information -->
+  <script id="roomInfo-template" type="text/x-handlebars-template">
+    <ul>
+      <li>
+        <span>房间名: </span>{{roomName}}
+      </li>
+      <li>
+        <span>创建人: </span>{{ownUserName}}
+      </li>
+      <li>
+        <span>分类标签: </span>{{roomKind}}
+      </li>
+      <li>
+        <span>房间介绍: </span>{{roomDescription}}
+      </li>
+    </ul>
   </script>
 
+  <!-- room members -->
+  <script id="members-template" type="text/x-handlebars-template">
+    <h3>房间成员:</h3>
+    <ul>
+      {{#each this}}
+        <li data-userId={{userId}}>
+          <img src="image/green.jpg">
+          <span class="member-name">{{userName}}</span>
+        </li>
+      {{/each}}
+    </ul> 
+  </script>
 
   <!-- main javascript entrance -->
   <script src="js/tools/require.js" data-main="js/room.js"></script>

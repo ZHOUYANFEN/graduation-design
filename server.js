@@ -28,3 +28,7 @@ app.use(html_router);			//html文件路由模块
 var server = app.listen(port, function () {
 	console.log('Server listening at http://localhost:%s', port);
 });
+
+//启动socket服务器监听
+var socket_server = require('./socket_server');
+socket_server.listen(server);

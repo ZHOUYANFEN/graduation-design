@@ -85,7 +85,7 @@ require(['cookie', 'jquery', 'config'], function(cookie, $, config){
 									lock = false;		//unlock the request's lock
 									$('#roomModal .error').html('<span>连接服务器出错</span>');
 									error_reset();
-									
+									window.location.reload();	
 								},
 								success: function(data){
 									$('#roomModal .error').css('color', '#12B926').html('<span>创建成功，正在跳转到房间...</span>');

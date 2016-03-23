@@ -63,7 +63,7 @@ router.post('/createRoom', function(req, res){
 		roomName: roomName,
 		roomKind: roomKind,
 		roomDescription: roomDescription,
-		members: []
+		//members: []
 	}
 	roomList.push(newRoom);
 
@@ -145,13 +145,8 @@ router.get('/getRoomInfo', function(req, res){
 	});
 });
 
-//user quit a room
-router.post('/quitRoom', function(req, res){
 
-});
-
-
-//add users to current room when thev visit '/room.html'
+/*add users to current room when thev visit '/room.html'
 exports.addUserToRoom = function(user, roomId){
 	for (var i = 0; i < roomList.length; i++) {
 		if (roomId == roomList[i]['roomId']){
@@ -167,5 +162,16 @@ exports.addUserToRoom = function(user, roomId){
 	}
 	return 'room does not exist';
 }
+*/
+
+exports.ifRoomExist = function(roomId){
+	for (var i = 0; i < roomList.length; i++) {
+		if (roomId == roomList[i]['roomId']){
+			return 'yes';
+		}
+	}
+	return 'no';
+}
+
 //module.exports = router;
 exports.router = router;	//express's router for room api
