@@ -9,7 +9,7 @@ body {
   margin: 25px 20px;
   margin-bottom: 0;
   height: 84%;
-  min-height: 480px;
+  min-height: 500px;
   min-width: 980px;
 }
 #main-content .left {
@@ -45,11 +45,12 @@ body {
 }
 #main-content .left .top-info-holder .members ul {
   overflow: auto;
-  height: 135px;
-  margin: 0 18px;
+  border: 2px solid #616161;
+  height: 90px;
+  margin: 0 13px;
   padding: 0;
   list-style: none;
-  background-color: #ffffff;
+  background-color: #FDFCF8;
 }
 #main-content .left .top-info-holder .members ul li {
   position: relative;
@@ -57,6 +58,7 @@ body {
   overflow: hidden;
   margin: 1px 0;
   width: 100%;
+  height: 21px;
 }
 #main-content .left .top-info-holder .members ul li img {
   position: absolute;
@@ -70,6 +72,82 @@ body {
 #main-content .left .down-chatting-holder {
   display: table-row;
   height: 100%;
+}
+#main-content .left .down-chatting-holder .chatting {
+  display: none;
+  position: relative;
+  height: 100%;
+}
+#main-content .left .down-chatting-holder .chatting h3 {
+  float: left;
+  margin: 10px 0 0 7px;
+  font: bold 17px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#main-content .left .down-chatting-holder .chatting #message-area {
+  position: absolute;
+  overflow: auto;
+  border: 2px solid #616161;
+  top: 37px;
+  bottom: 65px;
+  width: 200px;
+  margin-left: 13px;
+  background-color: #FDFCF8;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
+  word-break: break-all;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li {
+  margin-bottom: 1px;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.message {
+  font: 13px "Arial", "Microsoft YaHei", "宋体", sans-serif;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.message span {
+  color: #094FBA;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.message p {
+  display: inline;
+  line-height: 14px;
+  margin: 0;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.join,
+#main-content .left .down-chatting-holder .chatting #message-area ul li.leave {
+  font: 12px "Arial", "Microsoft YaHei", "宋体", sans-serif;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.join span,
+#main-content .left .down-chatting-holder .chatting #message-area ul li.leave span {
+  font-style: italic;
+  color: #616161;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.join p,
+#main-content .left .down-chatting-holder .chatting #message-area ul li.leave p {
+  display: inline;
+  color: #7F7F7F;
+  margin: 0 0 0 5px;
+}
+#main-content .left .down-chatting-holder .chatting #write-message {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 52px;
+}
+#main-content .left .down-chatting-holder .chatting #write-message textarea {
+  width: 160px;
+  height: 36px;
+  margin: 0 0 0 13px;
+  font: 13px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+#main-content .left .down-chatting-holder .chatting #write-message button {
+  float: right;
+  cursor: pointer;
+  width: 32px;
+  height: 42px;
+  margin-right: 13px;
+  font: bold 14px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+  line-height: 16px;
 }
 #main-content .center {
   height: 100%;
