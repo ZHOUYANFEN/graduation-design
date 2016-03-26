@@ -23,6 +23,8 @@ define('socket', ['jquery', 'socket_io', 'cookie', 'handlebars'], function($, io
 				var template = Handlebars.compile( $('#members-template').html() );
 				var html = template(data['room']);
 				$('#main-content .left .members').html(html);
+				//显示房间聊天区，此时再js控制显示，避免高度跳动
+				$('#main-content .left .chatting').css('display', 'block');
 			});
 			//房间中有成员离开
 			socket.on('member leave', function(data){
