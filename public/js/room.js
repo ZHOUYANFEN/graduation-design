@@ -10,13 +10,12 @@ require.config({
 		//功能模块
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
+		'socket': 'modules/socket',
 		'top_bar_userinfo': 'modules/user',
 		'mouse_draw': 'modules/mouse_draw',
 		'canvas_paint': 'modules/canvas_paint'
 	}
 });
-//房间id
-var roomId = window.location.href.split(/roomId=/)[1];
 
 //右上角个人信息
 require(['top_bar_userinfo'], function(top_bar_userinfo){
@@ -35,70 +34,26 @@ require(['jquery', 'config', 'handlebars'], function($, config, Handlebars){
 		url: config['api']['room']['getRoomInfo'][0],
 		type: config['api']['room']['getRoomInfo'][1],
 		data: {
-			roomId: roomId
+			roomId: window.location.href.split(/roomId=/)[1]
 		},
 		dataType: 'json',
 		timeout: 10000,
 		error: function(err){
-			alert('连接服务器出错！');
-			console.log(err);			
+			if (err['status'] == 403 && err['responseJSON']['description'] == 'romm has been deleted'){
+				alert('房间已被删除!');
+				window.removeEventListener('beforeunload', beforeunloadHandle);
+				window.location.href = '/index.html';	
+			}
 		},
 		success: function(data){
 			var template = Handlebars.compile( $('#roomInfo-template').html() );
 			var html = template(data['room']);
-			$('#main-content .left .handlebars .room-info').html(html);
+			$('#main-content .left .room-info').html(html);
 		}
 	});
 });
 
-//启动socket.io连接
-require(['jquery', 'socket_io', 'cookie', 'handlebars'], function($, io, cookie, Handlebars){
-	var socket = io('http://localhost:8080');
-
-	//发送初始化数据到socket服务器
-    socket.emit('initialize', {
-     	roomId : roomId,
-    	userId: cookie.getCookie('userId'),
-    	userName: cookie.getCookie('userName')
-    });
-    //获取房间中所有成员
-    socket.on('room members', function(data){
-    	console.log(data);
-		var template = Handlebars.compile( $('#members-template').html() );
-		var html = template(data['room']);
-		$('#main-content .left .handlebars .members').html(html);
-    });
-    //房间中有成员离开
-    socket.on('member leave', function(data){
-    	console.log('leave')
-    	console.log(data);
-    });
-})
-
-//离开房间操作，触发两事件
-/*
-require(['jquery', 'config'], function($, config){
-	window.addEventListener("beforeunload", function (event) {
-		var confirm ='若你是该房间中最后一个成员，你离开时房间将被删除';
-		event.returnValue = confirm;     // Gecko, Trident, Chrome 34+
-		return confirm;             	 // Gecko, WebKit, Chrome <34
-	});
-
-	window.addEventListener('unload', function(event){
-		var roomId = window.location.href.split(/roomId=/)[1];
-		console.log('fuckckckck')
-		var test = $.ajax({
-			url: config['api']['room']['getRoomInfo'][0],
-			type: config['api']['room']['getRoomInfo'][1],
-			data: {
-				roomId: roomId
-			},
-			dataType: 'json',
-			timeout: 10000,
-			success: function(data){
-				console.log(data)
-			}
-		});
-	});
+//加载socket模块
+require(['socket', 'jquery'], function(socket, $){
+	socket.init();	//启动socket连接，绑定初始化事件
 });
-*/

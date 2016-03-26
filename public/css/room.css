@@ -14,32 +14,36 @@ body {
 }
 #main-content .left {
   float: left;
+  display: table;
   width: 230px;
   height: 100%;
   background-color: #A4A4A4;
   margin-right: 15px;
 }
-#main-content .left .room-info {
+#main-content .left .top-info-holder {
+  display: table-row;
+}
+#main-content .left .top-info-holder .room-info {
   padding: 4px;
 }
-#main-content .left .room-info ul {
+#main-content .left .top-info-holder .room-info ul {
   list-style: none;
   margin: 0;
   padding: 1px;
 }
-#main-content .left .room-info ul li {
+#main-content .left .top-info-holder .room-info ul li {
   word-break: break-all;
   padding: 2px;
   font: 17px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
-#main-content .left .room-info ul li span {
+#main-content .left .top-info-holder .room-info ul li span {
   font-weight: bold;
 }
-#main-content .left .members h3 {
+#main-content .left .top-info-holder .members h3 {
   font: bold 17px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
   margin: 0 2px 3px 7px;
 }
-#main-content .left .members ul {
+#main-content .left .top-info-holder .members ul {
   overflow: auto;
   height: 135px;
   margin: 0 18px;
@@ -47,21 +51,25 @@ body {
   list-style: none;
   background-color: #ffffff;
 }
-#main-content .left .members ul li {
+#main-content .left .top-info-holder .members ul li {
   position: relative;
   white-space: nowrap;
   overflow: hidden;
   margin: 1px 0;
   width: 100%;
 }
-#main-content .left .members ul li img {
+#main-content .left .top-info-holder .members ul li img {
   position: absolute;
   top: 3px;
   left: 4px;
   width: 15px;
 }
-#main-content .left .members ul li span {
+#main-content .left .top-info-holder .members ul li span {
   margin-left: 23px;
+}
+#main-content .left .down-chatting-holder {
+  display: table-row;
+  height: 100%;
 }
 #main-content .center {
   height: 100%;
@@ -111,7 +119,7 @@ body {
   height: 28px;
 }
 #main-content .palette .current-color div p {
-  width: 52px;
+  width: 55px;
   margin: 3px auto;
   font: bold 17px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }

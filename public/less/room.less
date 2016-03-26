@@ -14,55 +14,63 @@ html,body{
 	min-width: 980px;
 	.left{
 		float: left;
+		display: table;		//用于同一列，高度自适应填充
 		width: 230px;
 		height: 100%;
 		background-color: #A4A4A4;
 		margin-right: 15px;
-		.room-info{
-			padding: 4px;
-			ul{
-				list-style: none;
-				margin: 0;
-				padding: 1px;
-				li{
-					word-break:break-all;
-					padding: 2px;
-					font: 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
-					span{
-						font-weight: bold;
+		.top-info-holder{
+			display: table-row;		//用于同一列，高度自适应填充
+			.room-info{
+				padding: 4px;
+				ul{
+					list-style: none;
+					margin: 0;
+					padding: 1px;
+					li{
+						word-break:break-all;
+						padding: 2px;
+						font: 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+						span{
+							font-weight: bold;
+						}
+					}
+				}
+			}
+			.members{
+				h3{
+					font: bold 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+					margin: 0 2px 3px 7px;
+				}
+				ul{
+					overflow: auto;
+					height: 135px;
+					margin: 0 18px;
+					padding: 0;
+					list-style: none;
+					background-color: #ffffff;
+					li{
+						position: relative;
+						white-space:nowrap;
+						overflow: hidden;
+						margin: 1px 0;
+						width: 100%;
+						img{
+							position: absolute;
+							top: 3px;
+							left: 4px;
+							width: 15px;
+						}
+						span{
+							margin-left: 23px;
+						}
 					}
 				}
 			}
 		}
-		.members{
-			h3{
-				font: bold 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
-				margin: 0 2px 3px 7px;
-			}
-			ul{
-				overflow: auto;
-				height: 135px;
-				margin: 0 18px;
-				padding: 0;
-				list-style: none;
-				background-color: #ffffff;
-				li{
-					position: relative;
-					white-space:nowrap;
-					overflow: hidden;
-					margin: 1px 0;
-					width: 100%;
-					img{
-						position: absolute;
-						top: 3px;
-						left: 4px;
-						width: 15px;
-					}
-					span{
-						margin-left: 23px;
-					}
-				}
-			}
+		.down-chatting-holder{
+			display: table-row;		//用于同一列，高度自适应填充
+			height: 100%;
 		}
 	}
 	.center{
@@ -116,7 +124,7 @@ html,body{
 				width: 80px;
 				height: 28px;
 				p{
-					width: 52px;
+					width: 55px;
 					margin: 3px auto;
 					font: bold 17px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 				}
