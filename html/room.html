@@ -34,15 +34,18 @@
   </div>
 
   <div id="main-content">
-    <!-- 左边房间信息 + 成员列表 -->
+    <!-- 左边房间信息 + 成员列表 + 聊天区 -->
     <div class="left">
-      <div class="handlebars">
+      <div class="top-info-holder">
         <div class="room-info">
           <!--  -->
         </div>
         <div class="members">
           <!--  -->
         </div>
+      </div>
+      <div class="down-chatting-holder">
+
       </div>
     </div>
 
@@ -122,7 +125,7 @@
     <h3>房间成员:</h3>
     <ul>
       {{#each this}}
-        <li data-userId={{userId}}>
+        <li data-user_id={{userId}}>
           <img src="image/green.jpg">
           <span class="member-name">{{userName}}</span>
         </li>

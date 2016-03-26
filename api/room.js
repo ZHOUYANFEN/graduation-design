@@ -141,7 +141,7 @@ router.get('/getRoomInfo', function(req, res){
 	}
 	res.status(403).send({
 		code: 0,
-		description: 'get room information error'
+		description: 'romm has been deleted'
 	});
 });
 
@@ -171,6 +171,14 @@ exports.ifRoomExist = function(roomId){
 		}
 	}
 	return 'no';
+}
+
+exports.deleteRoom = function(roomId){
+	for (var i = 0; i < roomList.length; i++) {
+		if (roomList[i]['roomId'] == roomId){
+			roomList.splice(i, 1);
+		}
+	}
 }
 
 //module.exports = router;
