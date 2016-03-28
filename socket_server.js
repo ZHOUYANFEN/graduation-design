@@ -61,8 +61,13 @@ exports.listen = function(server){
 		});
 
 		//receive the chatting message ,and boardcast it
-		socket.on('send message', function(data){
-			socket.in(data['roomId']).emit('receive message', data);
+		socket.on('chatting message', function(data){
+			socket.in(data['roomId']).emit('chatting message', data);
+		});
+
+		//receive the paintting message ,and boardcast it
+		socket.on('painting', function(data){
+			socket.in(data['roomId']).emit('painting', data);
 		});
 
 		//socket disconnect, send leaving member's message to client

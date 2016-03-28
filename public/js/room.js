@@ -10,16 +10,16 @@ require.config({
 		//功能模块
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
-		'socket': 'modules/socket',
 		'top_bar_userinfo': 'modules/user',
 		'mouse_draw': 'modules/mouse_draw',
-		'canvas_paint': 'modules/canvas_paint'
+		'canvas_paint': 'modules/canvas_paint',
+		'socket': 'modules/socket'
 	}
 });
 
-//右上角个人信息
-require(['top_bar_userinfo'], function(top_bar_userinfo){
-	top_bar_userinfo();
+//加载socket模块
+require(['socket', 'jquery'], function(socket, $){
+	socket.init();	//启动socket连接，绑定初始化事件
 });
 
 //画布与调色板初始化，绑定鼠标移动事件
@@ -28,7 +28,12 @@ require(['mouse_draw', 'canvas_paint'], function(mouse_draw, canvas_paint){
 	canvas_paint.init();
 });
 
-//初始化加载房间信息
+//右上角个人信息
+require(['top_bar_userinfo'], function(top_bar_userinfo){
+	top_bar_userinfo();
+});
+
+//左上角房间信息
 require(['jquery', 'config', 'handlebars'], function($, config, Handlebars){
 	$.ajax({
 		url: config['api']['room']['getRoomInfo'][0],
@@ -53,7 +58,3 @@ require(['jquery', 'config', 'handlebars'], function($, config, Handlebars){
 	});
 });
 
-//加载socket模块
-require(['socket', 'jquery'], function(socket, $){
-	socket.init();	//启动socket连接，绑定初始化事件
-});

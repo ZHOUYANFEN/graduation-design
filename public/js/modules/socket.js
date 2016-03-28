@@ -1,14 +1,17 @@
-define('socket', ['jquery', 'socket_io', 'cookie', 'handlebars'], function($, io, cookie, Handlebars){
+define('socket', ['jquery', 'socket_io', 'handlebars', 'cookie', 'canvas_paint'], function($, io, Handlebars, cookie, canvas_paint){
 	var socket;
 	var roomId = window.location.href.split(/roomId=/)[1],		//房间id
-		userId = cookie.getCookie('userId'),
+		userId = cookie.getCookie('userId'),		//当前用户信息
 		userName = cookie.getCookie('userName');
+
 	var beforeunloadHandle = function(event){		//离开房间beforeunload事件
 		var confirm ='若你是该房间中最后一个成员，你离开时房间将被删除';
 		event.returnValue = confirm;
 		return confirm;
 	}
-	// window.addEventListener('beforeunload', beforeunloadHandle);
+	window.addEventListener('beforeunload', beforeunloadHandle);
+
+
 
 	return {
 		init: function(){
@@ -83,8 +86,13 @@ define('socket', ['jquery', 'socket_io', 'cookie', 'handlebars'], function($, io
 				}
 			});
 
+			//接收画笔信息
+			socket.on('painting', function(data){
+				canvas_paint.draw_line(data['coor_queue'], data['palette']);
+			})
+
 			//接收聊天区信息
-			socket.on('receive message', function(data){
+			socket.on('chatting message', function(data){
 				var receive_message;
 				if (data['userId'] == userId){	//自己另外的标签页发的信息
 					receive_message = '<li class="message"><span class="me" data-user_id="'
@@ -111,7 +119,7 @@ define('socket', ['jquery', 'socket_io', 'cookie', 'handlebars'], function($, io
 					alert('聊天内容不能为空');
 					return ;
 				}
-				socket.emit('send message', {
+				socket.emit('chatting message', {
 				 	roomId : roomId,
 					userId: userId,
 					userName: userName,

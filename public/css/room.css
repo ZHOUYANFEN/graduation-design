@@ -66,6 +66,10 @@ body {
   left: 4px;
   width: 15px;
 }
+#main-content .left .top-info-holder .members ul li img.writing {
+  width: 22px;
+  top: -3px;
+}
 #main-content .left .top-info-holder .members ul li span {
   margin-left: 23px;
 }

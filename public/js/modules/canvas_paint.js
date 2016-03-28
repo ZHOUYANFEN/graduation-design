@@ -1,5 +1,5 @@
 define(['jquery', 'config'], function($, config){
-	var canvas,
+	var	canvas,
 		context,
 		color_arr = {
 			black: '#000000',
@@ -13,26 +13,21 @@ define(['jquery', 'config'], function($, config){
 		},
 		color = color_arr['black'],		//默认颜色
 		lineWidth = 2,					//默认线条粗细
-		eraser = false,
+		eraser = false,				//是否为橡皮擦
 		eraser_size = 5,
 		last_coor = 'none';		//默认最后坐标为空，坐标格式{x:x, y:y}
 
 	return {
-		init: function(){
+		init: function(){	//初始化，绑定各种事件
 			canvas = document.querySelector('#main-canvas');
 			context = canvas.getContext('2d');
 
-			//canvas的宽高填充整个区域
-			canvas.width = $('#main-content .center').width();
+			canvas.width = $('#main-content .center').width();	//canvas的宽高填充整个区域
 			canvas.height = $('#main-content .center').height();
-			//以白色填充画布
-			context.fillStyle = color_arr['white'];
+			
+			context.fillStyle = color_arr['white'];		//以白色填充画布
 			context.fillRect(0, 0, canvas.width, canvas.height);
-			//窗口大小调整时，重定义canvas宽高
-			// $(window).on('resize', function(event){
-			// 	canvas.width = $('#main-content .center').width();
-			// 	canvas.height = $('#main-content .center').height();
-			// });
+
 
 			//绑定事件，调色板中颜色更换
 			$('#main-content .palette .colors').on('click', 'td', function(event){
@@ -77,51 +72,84 @@ define(['jquery', 'config'], function($, config){
 					eraser_size = 30;
 				}
 			});
-
 		},
-		line_style: function(){
+		palette: function(){	//返回画板中画笔信息
 			return {
+				eraser: eraser,
+				eraser_size: eraser_size,
 				color: color,
-				lineWidth: lineWidth
+				lineWidth: lineWidth,
+				last_coor: last_coor
 			}
 		},
-		draw_line: function(coor_queue){
-			if (!eraser){
-				context.strokeStyle = color;		//全局颜色变量
-				context.lineWidth = lineWidth;		//全局线条粗细 
+		draw_line: function(){	//绘制线条/橡皮擦擦除
+			var coor_queue = arguments[0];	//路径坐标队列
 
-				//开始绘制
-				context.beginPath();
-				//路径的第一个坐标
-				if (last_coor == 'none'){
-					context.moveTo(coor_queue[0].x, coor_queue[0].y);
-				}
-				else{
-					context.moveTo(last_coor.x, last_coor.y);
-					context.lineTo(coor_queue[0].x, coor_queue[0].y);
-				}
+			if (arguments.length == 1){		//本地的绘制
+				if (!eraser){	//普通路径
+					context.strokeStyle = color;
+					context.lineWidth = lineWidth; 
+					context.beginPath();	//开始绘制
+					
+					if (last_coor == 'none'){	//路径的第一个坐标
+						context.moveTo(coor_queue[0].x, coor_queue[0].y);
+					}
+					else{
+						context.moveTo(last_coor.x, last_coor.y);
+						context.lineTo(coor_queue[0].x, coor_queue[0].y);
+					}
 
-				for (var i = 1; i < coor_queue.length; i++) {
-					context.lineTo(coor_queue[i].x, coor_queue[i].y);
-				}
-				last_coor = {
-					x: coor_queue[coor_queue.length-1].x,
-					y: coor_queue[coor_queue.length-1].y,
-				}
+					for (var i = 1; i < coor_queue.length; i++) {
+						context.lineTo(coor_queue[i].x, coor_queue[i].y);
+					}
+					last_coor = {
+						x: coor_queue[coor_queue.length-1].x,
+						y: coor_queue[coor_queue.length-1].y,
+					}
 
-				context.stroke();
-			}else{
-				context.fillStyle = color_arr['white'];
+					context.stroke();
+				}else{		//橡皮擦
+					context.fillStyle = color_arr['white'];
 
-				for (var i = 0; i < coor_queue.length; i++) {
-					context.beginPath();
-					context.arc(coor_queue[i].x, coor_queue[i].y, eraser_size, 0, 2*Math.PI);
-					context.fill();
+					for (var i = 0; i < coor_queue.length; i++) {
+						context.beginPath();
+						context.arc(coor_queue[i].x, coor_queue[i].y, eraser_size, 0, 2*Math.PI);
+						context.fill();
+					}
+				}
+			}else{	//socket接收其它成员绘画信息
+				var palette = arguments[1];		//使用socket中的画笔配置
+
+				if (!palette.eraser){	//普通路径
+					context.strokeStyle = palette.color;
+					context.lineWidth = palette.lineWidth; 
+					context.beginPath();	//开始绘制
+					
+					if (palette.last_coor == 'none'){	//路径的第一个坐标
+						context.moveTo(coor_queue[0].x, coor_queue[0].y);
+					}
+					else{
+						context.moveTo(palette.last_coor.x, palette.last_coor.y);
+						context.lineTo(coor_queue[0].x, coor_queue[0].y);
+					}
+
+					for (var i = 1; i < coor_queue.length; i++) {
+						context.lineTo(coor_queue[i].x, coor_queue[i].y);
+					}
+
+					context.stroke();
+				}else{		//橡皮擦
+					context.fillStyle = color_arr['white'];
+
+					for (var i = 0; i < coor_queue.length; i++) {
+						context.beginPath();
+						context.arc(coor_queue[i].x, coor_queue[i].y, palette.eraser_size, 0, 2*Math.PI);
+						context.fill();
+					}
 				}
 			}
 		},
-		//结束一条线条的绘制后，需要重置坐标坐标为空
-		reset_last_coor: function(){	
+		reset_last_coor: function(){	//结束一条线条的绘制后，需要重置坐标坐标为空
 			last_coor = 'none';
 		}
 	}	
