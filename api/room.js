@@ -146,24 +146,6 @@ router.get('/getRoomInfo', function(req, res){
 });
 
 
-/*add users to current room when thev visit '/room.html'
-exports.addUserToRoom = function(user, roomId){
-	for (var i = 0; i < roomList.length; i++) {
-		if (roomId == roomList[i]['roomId']){
-			for (var j = 0; j < roomList[i]['members'].length; j ++){
-				if (user['userId'] == roomList[i]['members'][j]['userId']){
-					return 'user is already in this room';
-				}
-			}
-			//user join this room
-			roomList[i]['members'].push(user);
-			return 'add user to room successfully';
-		}
-	}
-	return 'room does not exist';
-}
-*/
-
 exports.ifRoomExist = function(roomId){
 	for (var i = 0; i < roomList.length; i++) {
 		if (roomId == roomList[i]['roomId']){

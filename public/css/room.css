@@ -106,7 +106,10 @@ body {
   font: 13px "Arial", "Microsoft YaHei", "宋体", sans-serif;
 }
 #main-content .left .down-chatting-holder .chatting #message-area ul li.message span {
-  color: #094FBA;
+  color: #0004E9;
+}
+#main-content .left .down-chatting-holder .chatting #message-area ul li.message span.me {
+  color: #A508D9;
 }
 #main-content .left .down-chatting-holder .chatting #message-area ul li.message p {
   display: inline;

@@ -10,26 +10,6 @@ exports.listen = function(server){
 
 
 	io.sockets.on('connection', function(socket){
-		//socket disconnect, send leaving member's message to client
-		socket.on('disconnect', function(){
-			var socketInfo = getInfoBySocketId[socket.id];
-			if (socketInfo){
-				io.sockets.in(socketInfo['roomId']).emit('member leave', {
-					code: 1,
-					member: {
-						userId: socketInfo['userId'],
-						userName: socketInfo['userName'],
-						repetition: socketInfo['repetition']
-					}	
-				});
-				//if the value is 'undefined', it means no sockets are in this room, delete this room in 'api/room'
-				if (!io.sockets.adapter.rooms[socketInfo['roomId']]){
-					deleteRoom(socketInfo['roomId']);
-				}
-				delete getInfoBySocketId[socket.id];
-			}
-		});
-
 		//initially clinet send (roomId, userId and userName)
 		socket.on('initialize', function(data){
 			//add this new socket to the 'getInfoBySocketId' varible
@@ -73,10 +53,36 @@ exports.listen = function(server){
 				code: 1,
 				newMember: {
 					userId: data['userId'],
-					userName: data['userName']
+					userName: data['userName'],
+					repetition: repetition
 				},
 				room: room_members 
 			});
+		});
+
+		//receive the chatting message ,and boardcast it
+		socket.on('send message', function(data){
+			socket.in(data['roomId']).emit('receive message', data);
+		});
+
+		//socket disconnect, send leaving member's message to client
+		socket.on('disconnect', function(){
+			var socketInfo = getInfoBySocketId[socket.id];
+			if (socketInfo){
+				io.sockets.in(socketInfo['roomId']).emit('member leave', {
+					code: 1,
+					member: {
+						userId: socketInfo['userId'],
+						userName: socketInfo['userName'],
+						repetition: socketInfo['repetition']
+					}	
+				});
+				//if the value is 'undefined', it means no sockets are in this room, delete this room in 'api/room'
+				if (!io.sockets.adapter.rooms[socketInfo['roomId']]){
+					deleteRoom(socketInfo['roomId']);
+				}
+				delete getInfoBySocketId[socket.id];
+			}
 		});
 	});
 }
