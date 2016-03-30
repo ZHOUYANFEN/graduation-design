@@ -1,4 +1,4 @@
-define('socket', ['jquery', 'socket_io', 'handlebars', 'cookie', 'canvas_paint'], function($, io, Handlebars, cookie, canvas_paint){
+define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canvas_paint'], function(config, $, io, Handlebars, cookie, canvas_paint){
 	var socket;
 	var roomId = window.location.href.split(/roomId=/)[1],		//房间id
 		userId = cookie.getCookie('userId'),		//当前用户信息
@@ -15,7 +15,8 @@ define('socket', ['jquery', 'socket_io', 'handlebars', 'cookie', 'canvas_paint']
 
 	return {
 		init: function(){
-			socket = io('http://localhost:8080');	//连接socket服务器
+			var host = config['host'];
+			socket = io('http://' + host + ':8080');	//连接socket服务器
 
 
 			//发送初始化数据到socket服务器
