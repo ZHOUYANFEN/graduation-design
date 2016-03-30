@@ -14,7 +14,8 @@ require.config({
 		'mouse_draw': 'modules/mouse_draw',
 		'canvas_paint': 'modules/canvas_paint',
 		'socket': 'modules/socket'
-	}
+	},
+	waitSeconds: 0
 });
 
 //加载socket模块

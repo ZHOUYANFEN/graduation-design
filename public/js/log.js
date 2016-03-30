@@ -9,7 +9,8 @@ require.config({
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
 		'login': 'modules/user'
-	}
+	},
+	waitSeconds: 0
 });
 
 require(['login'], function(login){

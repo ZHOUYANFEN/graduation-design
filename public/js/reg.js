@@ -9,7 +9,8 @@ require.config({
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
 		'register': 'modules/user'
-	}
+	},
+	waitSeconds: 0
 });
 
 require(['register'], function(register){

@@ -9,7 +9,8 @@ require.config({
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
 		'changePassword': 'modules/user'
-	}
+	},
+	waitSeconds: 0
 });
 
 require(['changePassword'], function(changePassword){

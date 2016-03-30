@@ -11,7 +11,8 @@ require.config({
 		'config': 'modules/config',
 		'cookie': 'modules/cookie',
 		'top_bar_userinfo': 'modules/user'
-	}
+	},
+	waitSeconds: 0
 });
 //右上角个人信息
 require(['top_bar_userinfo'], function(top_bar_userinfo){
