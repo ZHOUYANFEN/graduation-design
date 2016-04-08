@@ -19,7 +19,7 @@ require.config({
 });
 
 //加载socket模块
-require(['socket', 'jquery'], function(socket, $){
+require(['socket'], function(socket){
 	socket.init();	//启动socket连接，绑定初始化事件
 });
 
