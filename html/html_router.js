@@ -54,10 +54,14 @@ router.get('/changePass.html', function(req, res){
 	}
 });
 
-//socket test
-router.get('/socket_test.html', function(req, res){
-	res.sendFile(path.join(__dirname, 'socket_test.html'));
-})
+router.get('/update.html', function(req, res){
+	if (req.cookies.userId){
+		res.sendFile(path.join(__dirname, 'update.html'));
+	}else{
+		res.redirect('/log.html');
+	}
+});
+
 
 
 module.exports = router;

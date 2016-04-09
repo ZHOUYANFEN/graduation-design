@@ -1,0 +1,94 @@
+@min-width: 1000px;
+html,body{
+	height: 100%;
+	min-width: @min-width;
+	margin: 0;
+	padding: 0;
+	background-color: #d0d0d0;
+}
+
+#main-content{
+	background-color: #fffcf3;
+	margin: 25px auto;
+	width: 80%;
+	//height: 500px;
+
+	.label-holder{
+		float: left;
+		width: 100px;
+		h4{
+			float: right;
+			margin-top: 20px;
+		}
+	}
+	.return-index{
+		height: 55px;
+		border-bottom: 1px solid #CAC4C4;
+		h3{
+			margin: 15px 0 0 25px;
+			float: left;
+			font: bold 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+		}
+		a{
+			float: right;
+			margin: 15px 25px 0 0;
+			font: bold 18px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+			text-decoration: none;
+			color: #9A40B1;
+		}
+	}
+	.updateAvatar{
+		overflow: hidden;
+		width: 100%;
+		border-bottom: 1px solid #c9c9c9;
+
+		.avatarCotainer{
+			float: left;
+			overflow: hidden;
+			margin: 20px 30px;
+			width: 100px;
+			height: 100px;
+			img{
+				width: 100%;
+			}
+		}
+		.select-button{
+			margin-top: 20px;
+			img{
+				display: block;
+				width: 120px;
+				cursor: pointer;
+			}
+			h5{
+				margin: 8px 0;
+				font: 13px "Microsoft YaHei", "微软雅黑", "黑体","宋体",sans-serif;
+				color: #959595;
+			}
+			form{
+				display: none;
+			}
+		}
+	}
+	.updateInfo{
+		.userInfo{
+			overflow: hidden;
+			input{
+				float: left;
+				margin: 16px 0 0 30px;
+				padding-left: 10px;
+				height: 25px;
+				width: 235px;
+				font: 15px "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+			}
+		}
+	}
+	.confirm{
+		height: 85px;
+		img{
+			float: right;
+			cursor: pointer;
+			width: 90px;
+			margin: 20px 25px 0 0;
+		}
+	}
+}

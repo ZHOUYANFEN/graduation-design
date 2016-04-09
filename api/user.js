@@ -13,6 +13,7 @@ router.post('/reg', function(req, res){
 	var email = req.body.email,
 		phone = req.body.phone,
 		password = req.body.password;
+	var password_hash = crypto.createHash('md5').update(password).digest('hex');
 
 	//query the DB first to check if this user already exists
 	User.findByEmail(email, function(err, found){
@@ -41,7 +42,7 @@ router.post('/reg', function(req, res){
 			}
 
 			//this user haven't been regsiter yet, add him to the database
-			var	hash = crypto.createHash('sha256').update( new Date().getTime().toString() ).digest('hex');
+			var	hash = crypto.createHash('md5').update( new Date().getTime().toString() ).digest('hex');
 			if (hash.length > 15){
 				hash = hash.substr(0,15);
 			}			
@@ -49,7 +50,7 @@ router.post('/reg', function(req, res){
 				name: '新用户' + hash,
 				email: email,
 				phone: phone,
-				password: password
+				password: password_hash
 			});
 
 			new_user.save(function(err, new_user, flag){
@@ -78,7 +79,7 @@ router.post('/log', function(req, res){
 		if (found.length > 0){
 			var user_found= found[0];
 			var user_password = user_found['password'];
-			if (user_password !== password){	//password incorrect
+			if (user_password !== password_hash){	//password incorrect
 				res.status(403).send({
 					code: 0,
 					description: 'password incorrect'
@@ -106,6 +107,8 @@ router.post('/log', function(req, res){
 
 	var account = req.body.account,
 		password = req.body.password;
+	var password_hash = crypto.createHash('md5').update(password).digest('hex');
+
 
 	if (account.match(/^(\w|\.)+@{1}(\w|\.)+$/)){			//email
 		User.findByEmail(account, login_callback);
@@ -121,19 +124,22 @@ router.post('/changePass', function(req, res){
 	var _id = req.body.userId,
 		oldPassword = req.body.oldPassword,
 		newPassword = req.body.newPassword;
+	var oldPassword_hash = crypto.createHash('md5').update(oldPassword).digest('hex'),
+		newPassword_hash = crypto.createHash('md5').update(newPassword).digest('hex');
+
 	User.findById(_id, function (err, found){
 		if (err){	//userId incorrect
 			res.status(403).send(err);
 			return ;
 		}
-		if (oldPassword !== found.password){
+		if (oldPassword_hash !== found.password){
 			res.status(403).send({
 				code: 0,
 				description: 'password incorrect'
 			});
 			return ;
 		}else{		//update the DB
-			User.update({_id: _id}, {password: newPassword}, function(error, row){
+			User.update({_id: _id}, {password: newPassword_hash}, function(error, row){
 				if (error){
 					res.status(500).send(error);
 					return ;

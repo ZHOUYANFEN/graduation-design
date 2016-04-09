@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>修改个人信息</title>
+  <link rel="stylesheet" type="text/css" href="css/top_bar.min.css">
+  <link rel="stylesheet" type="text/css" href="css/update.min.css"></head>
+
+<body>
+  <div id="top-bar">
+    <div class="place-holder">
+      <div class="left">
+        <a href="/index.html">在线画板平台</a>
+      </div>
+      <div class="right">
+        <div class="img-holder">
+          <img src="image/emptyAvatar.jpg"></div>
+        <h3></h3>
+
+        <div class="hidden_first">
+          <div class="triangle"></div>
+          <div class="user_list">
+            <div class="updateInfo">
+              <a href="/update.html">修改资料</a>
+            </div>
+            <div class="changePass">
+              <a href="/changePass.html">修改密码</a>
+            </div>
+            <div class="quit">退出</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="main-content">
+    <div class="return-index">
+      <h3>修改个人信息</h3> 
+      <a href="/index.html">返回首页</a>
+    </div>
+    <div class="updateAvatar">
+      <div class="label-holder">
+        <h4>头像</h4>
+      </div>
+      <div class="avatarCotainer">
+        <img src="image/emptyAvatar.jpg">
+      </div>
+      <div class="select-button">
+        <img id="avatar_chooseImg" src="image/chooseAvatar.png">
+        <h5>支持JPG,PNG格式，请不要超过2M</h5>
+        <button id="avatar_uploadImg">上传</button>
+<!--               <form id="avatar_hidden_form" enctype="multipart/form-data" action="/msq/api/image" method="POST" target="avatar_hidden_iframe">
+                <input type="file" name="image"/> 
+                <input type="text" name="userId"/>
+                <input type="submit"/>
+                <iframe name="avatar_hidden_iframe" id="avatar_hidden_iframe"></iframe>
+              </form> -->
+      </div>
+    </div>
+    <div class="updateInfo">
+      <div class="userInfo userName">
+        <div class="label-holder">
+          <h4>用户名</h4>
+        </div>
+        <input type="text" id="updateName" placeholder="输入用户名"/>
+      </div>
+      <div class="userInfo userPhone">
+        <div class="label-holder">
+          <h4>手机号</h4>
+        </div>
+        <input type="text" id="updatePhone" placeholder="输入手机号"/>
+      </div>
+      <div class="userInfo userEmail">
+        <div class="label-holder">
+          <h4>邮箱</h4>
+        </div>
+        <input type="text" id="updateEmail" placeholder="输入邮箱"/>
+      </div>
+    </div>
+    <div class="confirm">
+      <img id="confirm-button" src="image/modify.png">
+    </div>
+  </div>
+
+  <!-- main javascript entrance -->
+  <script src="js/tools/require.js" data-main="js/update.js"></script>
+
+</body>
+</html>
