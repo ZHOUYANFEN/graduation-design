@@ -1,10 +1,12 @@
-define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canvas_paint'], function(config, $, io, Handlebars, cookie, canvas_paint){
+define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canvas_paint'], 
+		function(config, $, io, Handlebars, cookie, canvas_paint){
+
 	var socket;
 	var roomId = window.location.href.split(/roomId=/)[1],		//房间id
 		userId = cookie.getCookie('userId'),		//当前用户信息
 		userName = cookie.getCookie('userName');
 
-	var beforeunloadHandle = function(event){		//离开房间beforeunload事件
+	window.beforeunloadHandle = function(event){		//离开房间beforeunload事件，句柄使用全局变量
 		var confirm ='若你是该房间中最后一个成员，你离开时房间将被删除';
 		event.returnValue = confirm;
 		return confirm;
@@ -27,8 +29,8 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 			});
 
 			//获取房间中成员列表信息+新成员信息
+			var template = Handlebars.compile( $('#members-template').html() );
 			socket.on('room members', function(data){
-				var template = Handlebars.compile( $('#members-template').html() );
 				for (var i = 0; i < data['room'].length; i++) {
 					if (data['room'][i]['userId'] == userId){	//自己
 						data['room'][i]['userName'] = '我';
@@ -115,11 +117,24 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 			//聊天框发送信息
 			$('#main-content .left #write-message button').on('click', function(event){
 				var text = $('#main-content .left #write-message textarea').val();
-				$('#main-content .left #write-message textarea').val('');
 				if (text == ''){
-					alert('聊天内容不能为空');
+					alert('聊天内容不能为空'); 
 					return ;
+				}else if (text.match(/(<|>)/)){		//XSS过滤输入
+					text = text.replace(/[<>"&]/g, function(match, pos, originalText){
+						switch(match){
+							case '<':
+								return '&lt;';
+							case '>':
+								return '&gt;';
+							case '&':
+								return '&amp;';
+							case '\"':
+								return '&quot;';
+						}
+					});
 				}
+				$('#main-content .left #write-message textarea').val('');
 				socket.emit('chatting message', {
 				 	roomId : roomId,
 					userId: userId,
