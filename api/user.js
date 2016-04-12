@@ -155,7 +155,77 @@ router.post('/changePass', function(req, res){
 
 //user update information
 router.post('/update', function(req, res){
+	var _id = req.body.userId,
+		update_content = req.body.update_content;
 
+	var errors = [];
+	var finish_count = 0,
+		prop_count = 0;
+
+	function finish_check(){
+		finish_count ++;
+		if (finish_count == prop_count){	//all check have been done
+			if (errors.length > 0){	//errors, user already exist
+				res.status(403).send({
+					code: 0001,
+					description: 'user exists',
+					errors: errors
+				});
+			}else{	//update the database
+				User.update({_id: _id}, update_content, function(err){
+					if (err){
+						res.status(500).send({
+							description: 'database error',
+							err: err
+						})
+						return ;
+					}
+					res.status(200).send({
+						code: 1,
+						description: 'update successfully'
+					});
+				});
+			}
+		}
+	}
+
+	for (var prop in update_content){
+		prop_count ++;
+		if (prop == 'name'){
+			User.findByName(update_content.name, function(err, found){
+				if (err){	//userId incorrect
+					res.status(403).send(err);
+					return ;
+				}
+				if (found.length !== 0){	//user name exist
+					errors.push('用户名');
+				}
+				finish_check();
+			})
+		}else if (prop == 'phone'){
+			User.findByPhone(update_content.phone, function(err, found){
+				if (err){	
+					res.status(403).send(err);
+					return ;
+				}
+				if (found.length !== 0){	//user phone exist
+					errors.push('手机号');
+				}
+				finish_check();
+			})
+		}else if (prop == 'email'){
+			User.findByEmail(update_content.email, function(err, found){
+				if (err){	
+					res.status(403).send(err);
+					return ;
+				}
+				if (found.length !== 0){	//user email exist
+					errors.push('邮箱');
+				}
+				finish_check();
+			})
+		}
+	}
 });
 
 
