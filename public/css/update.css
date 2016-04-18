@@ -36,6 +36,7 @@ body {
   color: #9A40B1;
 }
 #main-content .updateAvatar {
+  display: none;
   overflow: hidden;
   width: 100%;
   border-bottom: 1px solid #c9c9c9;
