@@ -89,10 +89,18 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 				}
 			});
 
+			//某成员开始绘图
+			socket.on('start painting', function(data){
+				console.log(data);
+			});
+			//某成员结束绘图
+			socket.on('finish painting', function(data){
+				console.log(data);
+			});
 			//接收画笔信息
 			socket.on('painting', function(data){
 				canvas_paint.draw_line(data['coor_queue'], data['palette']);
-			})
+			});
 
 			//接收聊天区信息
 			socket.on('chatting message', function(data){
@@ -112,7 +120,7 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 				}
 				$('#main-content .left #message-area ul').append(receive_message);
 				$('#main-content .left #message-area').animate({scrollTop: $('#main-content .left #message-area ul').height()+'px'}, 400);
-			})
+			});
 
 			//聊天框发送信息
 			$('#main-content .left #write-message button').on('click', function(event){

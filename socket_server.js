@@ -70,6 +70,16 @@ exports.listen = function(server){
 			socket.in(data['roomId']).emit('painting', data);
 		});
 
+		//member start painting
+		socket.on('start painting', function(data){
+			socket.in(data['roomId']).emit('start painting', data);
+		});
+
+		//member finish painting
+		socket.on('finish painting', function(data){
+			socket.in(data['roomId']).emit('finish painting', data);
+		});
+
 		//socket disconnect, send leaving member's message to client
 		socket.on('disconnect', function(){
 			var socketInfo = getInfoBySocketId[socket.id];
