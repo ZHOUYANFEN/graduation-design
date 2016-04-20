@@ -14,7 +14,6 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 	window.addEventListener('beforeunload', beforeunloadHandle);
 
 
-
 	return {
 		init: function(){
 			var host = config['host'];
@@ -34,7 +33,9 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 				for (var i = 0; i < data['room'].length; i++) {
 					if (data['room'][i]['userId'] == userId){	//自己
 						data['room'][i]['userName'] = '我';
-						break;
+					}
+					if (data['room'][i]['userName'].length > 8){
+						data['room'][i]['userName'] = data['room'][i]['userName'].substr(0,8) + '...';
 					}
 				}
 				var html = template(data['room']);
@@ -47,8 +48,8 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 					var newMemberName = data['newMember']['userName'];
 					if (data['newMember']['userId'] == userId){		//自己
 						newMemberName = '我';
-					}else if (newMemberName.length > 9){
-						newMemberName = newMemberName.substr(0, 9) + '...';
+					}else if (newMemberName.length > 8){	//截短成员列表中的名字长度
+						newMemberName = newMemberName.substr(0, 8) + '...';
 					}
 					var enterMessage = '<li class="join"><span data-user_id="'
 										+ data['newMember']['userId']
@@ -91,11 +92,55 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 
 			//某成员开始绘图
 			socket.on('start painting', function(data){
-				console.log(data);
+				var $li = $('.left .members li[data-user_id="' + data['userId'] + '"]');
+				$li.find('img')
+				.attr('src', 'image/writing.gif')
+				.addClass('writing');
+
+				var lineWidth, html;
+				if (data['palette']['eraser']){
+					html = '<h5 class="start-writing">(橡皮擦)</h5>';
+				}else{
+					var colors_arr = {
+						'#000000': ['黑色', 'black-text'],
+						'#ff0000': ['红色', 'red-text'],
+						'#0000ff': ['蓝色', 'blue-text'],
+						'#00ff00': ['绿色', 'green-text'],
+						'#ffff00': ['黄色', 'yellow-text'],
+						'#ff00ff': ['紫色', 'purple-text'],
+						'#ff9900': ['橙色', 'orange-text'],
+						'#ffffff': ['白色', 'white-text']
+					};
+					switch(data['palette']['lineWidth']){
+						case 2:
+							lineWidth = '细';
+							break;	
+						case 4:
+							lineWidth = '中';
+							break;	
+						case 8:
+							lineWidth = '粗';
+							break;	
+					}
+					html = '<h5 class="start-writing">(<span class="'
+						+ colors_arr[data['palette']['color']][1]
+						+ '">'
+						+ colors_arr[data['palette']['color']][0]
+						+'</span>'
+						+ lineWidth
+						+')</h5>';
+
+				}
+				$li.append(html);
 			});
 			//某成员结束绘图
 			socket.on('finish painting', function(data){
-				console.log(data);
+				var $li = $('.left .members li[data-user_id="' + data['userId'] + '"]');
+				$li.find('img')
+				.attr('src', 'image/green.jpg')
+				.removeClass('writing');
+
+				$li.find('.start-writing').remove();
 			});
 			//接收画笔信息
 			socket.on('painting', function(data){

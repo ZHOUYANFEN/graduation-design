@@ -248,8 +248,8 @@ define('top_bar_userinfo', ['jquery', 'cookie'], function($, cookie){
 	return function(){
 		//加载用户名
 		var userName = cookie.getCookie('userName');
-		if (userName.length > 9){
-			userName = userName.substr(0, 9) + '...';	
+		if (userName.length > 8){
+			userName = userName.substr(0, 8) + '...';	
 		}
 		$('#top-bar .right h3').text(userName);
 		

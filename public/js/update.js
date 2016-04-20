@@ -106,7 +106,7 @@ require(['jquery', 'config', 'cookie'], function($, config, cookie){
 					cookie.setCookie('userEmail', newEmail);
 					cookie.setCookie('userPhone', newPhone);
 					alert('修改成功');
-					window.location.reload();
+					window.location.href = '/index.html';
 				}
 			});
 		}

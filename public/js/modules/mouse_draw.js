@@ -27,6 +27,11 @@ define(['jquery', 'canvas_paint', 'socket', 'config', 'cookie'], function($, can
 							userName: userName,
 							palette: palette
 						});
+						//在成员列表中，添加正在绘图标示
+						var $li = $('.left .members li[data-user_id="' + userId + '"]')
+						$li.find('img')
+						.attr('src', 'image/writing.gif')
+						.addClass('writing');
 					}
 
 					var coor = {
@@ -66,6 +71,11 @@ define(['jquery', 'canvas_paint', 'socket', 'config', 'cookie'], function($, can
 						roomId: roomId,
 						userId: userId
 					});
+					//在成员列表中，添加正在绘图标示
+					var $li = $('.left .members li[data-user_id="' + userId + '"]')
+					$li.find('img')
+					.attr('src', 'image/green.jpg')
+					.removeClass('writing');
 				}
 			})
 			.on('mouseup', function(event){
@@ -80,9 +90,13 @@ define(['jquery', 'canvas_paint', 'socket', 'config', 'cookie'], function($, can
 					//发送结束绘图提示
 					socket.emit('finish painting', {
 						roomId: roomId,
-						userId: userId,
-						userName: userName
+						userId: userId
 					});
+					//在成员列表中，添加正在绘图标示
+					var $li = $('.left .members li[data-user_id="' + userId + '"]')
+					$li.find('img')
+					.attr('src', 'image/green.jpg')
+					.removeClass('writing');
 				}
 			});
 		},

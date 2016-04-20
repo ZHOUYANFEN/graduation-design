@@ -15,7 +15,7 @@ body {
 #main-content .left {
   float: left;
   display: table;
-  width: 230px;
+  width: 240px;
   height: 100%;
   background-color: #A4A4A4;
   margin-right: 15px;
@@ -47,31 +47,36 @@ body {
   overflow: auto;
   border: 2px solid #616161;
   height: 90px;
-  margin: 0 13px;
+  margin: 0 12px;
   padding: 0;
   list-style: none;
   background-color: #FDFCF8;
 }
 #main-content .left .top-info-holder .members ul li {
   position: relative;
-  white-space: nowrap;
   overflow: hidden;
   margin: 1px 0;
   width: 100%;
   height: 21px;
+  font: 14px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 #main-content .left .top-info-holder .members ul li img {
   position: absolute;
-  top: 3px;
-  left: 4px;
+  top: 2px;
+  left: 2px;
   width: 15px;
 }
 #main-content .left .top-info-holder .members ul li img.writing {
-  width: 22px;
-  top: -3px;
+  width: 20px;
+  top: -2px;
 }
-#main-content .left .top-info-holder .members ul li span {
-  margin-left: 23px;
+#main-content .left .top-info-holder .members ul li .member-name {
+  margin-left: 19px;
+}
+#main-content .left .top-info-holder .members ul li .start-writing {
+  float: right;
+  margin: 0;
+  font: 13px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 #main-content .left .down-chatting-holder {
   display: table-row;
@@ -93,7 +98,7 @@ body {
   border: 2px solid #616161;
   top: 37px;
   bottom: 65px;
-  width: 200px;
+  width: 210px;
   margin-left: 13px;
   background-color: #FDFCF8;
 }
@@ -142,7 +147,7 @@ body {
   height: 52px;
 }
 #main-content .left .down-chatting-holder .chatting #write-message textarea {
-  width: 160px;
+  width: 170px;
   height: 36px;
   margin: 0 0 0 13px;
   font: 13px "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
@@ -259,6 +264,30 @@ body {
 }
 .white {
   background-color: #ffffff;
+}
+.black-text {
+  color: #000000;
+}
+.red-text {
+  color: #ff0000;
+}
+.blue-text {
+  color: #0000ff;
+}
+.green-text {
+  color: #00ff00;
+}
+.yellow-text {
+  color: #ffff00;
+}
+.purple-text {
+  color: #ff00ff;
+}
+.orange-text {
+  color: #ff9900;
+}
+.white-text {
+  color: #ffffff;
 }
 /*
 	@media screen and (min-width: 1000px){}
