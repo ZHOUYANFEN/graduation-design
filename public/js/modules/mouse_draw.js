@@ -66,7 +66,7 @@ define(['jquery', 'canvas_paint', 'socket', 'config', 'cookie'], function($, can
 				canvas_paint.reset_last_coor();	//重置最后坐标为空
 				if (!start_painting){
 					start_painting = true;		//重置开始绘画标记
-					//发送结束绘图提示
+					//发送结束绘图提示+画布imgData
 					socket.emit('finish painting', {
 						roomId: roomId,
 						userId: userId

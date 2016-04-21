@@ -11,7 +11,7 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 		event.returnValue = confirm;
 		return confirm;
 	}
-	window.addEventListener('beforeunload', beforeunloadHandle);
+	//window.addEventListener('beforeunload', beforeunloadHandle);
 
 
 	return {
@@ -135,12 +135,19 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 			});
 			//某成员结束绘图
 			socket.on('finish painting', function(data){
-				var $li = $('.left .members li[data-user_id="' + data['userId'] + '"]');
+				var $li = $('.left .members li[data-user_id="' + data + '"]');
 				$li.find('img')
 				.attr('src', 'image/green.jpg')
 				.removeClass('writing');
 
 				$li.find('.start-writing').remove();
+			});
+			//接收房间初始化绘画信息
+			socket.on('room painting data', function(data){
+				//console.log(data);
+				for (var i = 0; i < data.length; i++) {
+					canvas_paint.draw_line(data[i]['coor_queue'], data[i]['palette']);
+				}
 			});
 			//接收画笔信息
 			socket.on('painting', function(data){

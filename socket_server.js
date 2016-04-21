@@ -1,6 +1,7 @@
 var deleteRoom = require('./api/room').deleteRoom,
 	socketio = require('socket.io'),
 	io,		//socket.io main function 
+	getPaintingByRoomId = {},	//all painting message in one room
 	getInfoBySocketId = {};	//{'socketId': {roomId:'roomId', userId:'userId', userName:'userName'}}
 
 
@@ -48,7 +49,7 @@ exports.listen = function(server){
 					})
 				}
 			}
-			//send to client
+			//send to all clients in this room
 			io.sockets.in(data['roomId']).emit('room members', {
 				code: 1,
 				newMember: {
@@ -58,16 +59,15 @@ exports.listen = function(server){
 				},
 				room: room_members 
 			});
+			//send painting data of this room to the client
+			if (getPaintingByRoomId[data['roomId']]){
+				socket.emit('room painting data', getPaintingByRoomId[data['roomId']]);
+			}
 		});
 
 		//receive the chatting message ,and boardcast it
 		socket.on('chatting message', function(data){
 			socket.in(data['roomId']).emit('chatting message', data);
-		});
-
-		//receive the paintting message ,and boardcast it
-		socket.on('painting', function(data){
-			socket.in(data['roomId']).emit('painting', data);
 		});
 
 		//member start painting
@@ -77,7 +77,17 @@ exports.listen = function(server){
 
 		//member finish painting
 		socket.on('finish painting', function(data){
-			socket.in(data['roomId']).emit('finish painting', data);
+			socket.in(data['roomId']).emit('finish painting', data['userId']);
+		});
+
+		//receive the paintting message, save and boardcast it
+		socket.on('painting', function(data){
+			socket.in(data['roomId']).emit('painting', data);
+
+			if (!getPaintingByRoomId[data['roomId']]){
+				getPaintingByRoomId[data['roomId']] = [];
+			}
+			getPaintingByRoomId[data['roomId']].push(data);
 		});
 
 		//socket disconnect, send leaving member's message to client
@@ -97,6 +107,7 @@ exports.listen = function(server){
 					deleteRoom(socketInfo['roomId']);
 				}
 				delete getInfoBySocketId[socket.id];
+				delete getPaintingByRoomId[socketInfo['roomId']];
 			}
 		});
 	});
