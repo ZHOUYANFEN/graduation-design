@@ -105,9 +105,9 @@ exports.listen = function(server){
 				//if the value is 'undefined', it means no sockets are in this room, delete this room in 'api/room'
 				if (!io.sockets.adapter.rooms[socketInfo['roomId']]){
 					deleteRoom(socketInfo['roomId']);
+					delete getPaintingByRoomId[socketInfo['roomId']];
 				}
 				delete getInfoBySocketId[socket.id];
-				delete getPaintingByRoomId[socketInfo['roomId']];
 			}
 		});
 	});

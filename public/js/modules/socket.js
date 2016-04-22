@@ -144,7 +144,6 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 			});
 			//接收房间初始化绘画信息
 			socket.on('room painting data', function(data){
-				//console.log(data);
 				for (var i = 0; i < data.length; i++) {
 					canvas_paint.draw_line(data[i]['coor_queue'], data[i]['palette']);
 				}
