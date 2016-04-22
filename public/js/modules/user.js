@@ -152,6 +152,7 @@ define('login', ['jquery', 'config', 'cookie'], function($, config, cookie){
 						cookie.setCookie('userName', data.user_data.name);
 						cookie.setCookie('userEmail', data.user_data.email);
 						cookie.setCookie('userPhone', data.user_data.phone);
+						cookie.setCookie('isAdmin', data.user_data.isAdmin);
 						window.location.href = '/index.html';
 					}
 				});

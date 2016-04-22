@@ -59,3 +59,18 @@ require(['jquery', 'config', 'handlebars'], function($, config, Handlebars){
 	});
 });
 
+//判断是否为管理员
+require(['jquery', 'cookie'], function($, cookie){
+	if (cookie.getCookie('isAdmin') == 'yes'){
+		$('#top-bar .left').after('<div class="medium"><h3>删除房间</h3></div>');
+		$('#top-bar .medium h3')
+		.css('display', 'block')
+		.on('click', function(){
+			require(['socket'], function(socket_module){
+				var socket = socket_module.socket_object();
+				var roomId = window.location.href.split(/roomId=/)[1];
+				socket.emit('delete room', roomId);
+			});	
+		});
+	}
+});

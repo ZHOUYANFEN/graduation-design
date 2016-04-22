@@ -62,6 +62,12 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 				}
 			});
 
+			//获取到管理员删除房间消息
+			socket.on('delete room', function(){
+				window.removeEventListener('beforeunload', beforeunloadHandle);
+				window.location.href = '/index.html';
+			});
+
 			//房间中有成员离开
 			socket.on('member leave', function(data){
 				//同一浏览器，同一用户的其它标签页离开，所有标签页重定向到首页，离开房间

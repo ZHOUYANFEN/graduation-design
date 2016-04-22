@@ -90,6 +90,11 @@ exports.listen = function(server){
 			getPaintingByRoomId[data['roomId']].push(data);
 		});
 
+		//admin delete the room
+		socket.on('delete room', function(roomId){
+			io.sockets.in(roomId).emit('delete room');
+		})
+
 		//socket disconnect, send leaving member's message to client
 		socket.on('disconnect', function(){
 			var socketInfo = getInfoBySocketId[socket.id];

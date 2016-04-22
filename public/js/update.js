@@ -35,10 +35,19 @@ require(['jquery', 'config', 'cookie'], function($, config, cookie){
 			newPhone = $('.updateInfo #updatePhone').val();
 		var update_content = {};
 
+
 		if (newName == ''){
+			if (cookie.getCookie('isAdmin') == 'yes'){	//管理员不可修改用户名
+				alert('管理员不可修改用户名');
+				return ;
+			}
 			alert('用户名不能为空');
 			return ;
 		}else if (newName != userName){
+			if (cookie.getCookie('isAdmin') == 'yes'){	//管理员不可修改用户名
+				alert('管理员不可修改用户名');
+				return ;
+			}
 			update_content.name = newName;
 		}
 		if (newPhone == ''){
@@ -111,4 +120,11 @@ require(['jquery', 'config', 'cookie'], function($, config, cookie){
 			});
 		}
 	});
+});
+
+//判断是否为管理员
+require(['jquery', 'cookie'], function($, cookie){
+	if (cookie.getCookie('isAdmin') == 'yes'){
+
+	}
 });

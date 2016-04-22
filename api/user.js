@@ -85,6 +85,10 @@ router.post('/log', function(req, res){
 					description: 'password incorrect'
 				});
 			}else{		//password correct, log in successfully
+				var isAdmin = 'no';
+				if (user_found['name'] == 'admin'){
+					isAdmin = 'yes';
+				}
 				res.status(200).send({
 					code: 1,
 					description: 'log in successfully',
@@ -93,6 +97,7 @@ router.post('/log', function(req, res){
 						name: user_found['name'],
 						email: user_found['email'],
 						phone: user_found['phone'],
+						isAdmin: isAdmin
 					}
 				});
 			}
