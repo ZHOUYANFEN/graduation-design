@@ -11,7 +11,7 @@ define('socket', ['config', 'jquery', 'socket_io', 'handlebars', 'cookie', 'canv
 		event.returnValue = confirm;
 		return confirm;
 	}
-	//window.addEventListener('beforeunload', beforeunloadHandle);
+	window.addEventListener('beforeunload', beforeunloadHandle);
 
 
 	return {
